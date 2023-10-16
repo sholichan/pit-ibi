@@ -17,7 +17,7 @@ export default function HomePoster() {
 
         <div className="flex flex-wrap w-full p-4 justify-center h-auto ">
           {images.map((image, index) => (
-            <div className="w-1/2 h-fit p-2 animate-wiggle animate-infinite">
+            <div key={index} className="w-1/2 h-fit p-2 animate-wiggle animate-infinite">
               <Image
                 key={index}
                 src={image}
