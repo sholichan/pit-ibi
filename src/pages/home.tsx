@@ -4,7 +4,7 @@ import poster1 from "../../public/img/poster1.jpg"
 import poster2 from "../../public/img/poster2.jpg"
 import poster3 from "../../public/img/poster3.jpg"
 import { useState } from "react"
-import Layout from "./layout"
+import Layout from "../components/layout"
 
 const images = [poster1, poster2, poster3, poster1]
 let posterIndex: any = null
@@ -30,7 +30,7 @@ export default function HomePoster() {
               />
             </div>
           ))}
-          <Link className="bg-red-500 w-1/3 h-8 m-2 rounded-md items-center flex justify-center" href="/quiz">
+          <Link className="bg-blue-500 w-6/12 h-12 p-2 rounded-md items-center flex justify-center" href="/quiz">
             <button >
               Quiz
             </button>
@@ -53,7 +53,6 @@ export default function HomePoster() {
           />
         </div>
       </Layout>
-
     )
   );
 }

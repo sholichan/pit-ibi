@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "formik": "^2.4.5",
     "next": "13.5.4",
     "next-qrcode": "^2.5.1",
     "react": "^18",

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import Layout from "./layout"
+import Layout from "../components/layout"
 import { useQRCode } from "next-qrcode"
 
 export default function HomePoster() {
@@ -31,12 +31,12 @@ export default function HomePoster() {
             }}
           />
         </div>
-          <Link className="bg-red-500 w-5/12 h-12 p-2 rounded-md items-center flex justify-center" href="/">
+          <Link className="bg-blue-500 w-5/12 h-12 p-2 rounded-md items-center flex justify-center" href="/">
             <button >
               Home
             </button>
           </Link>
-          <Link className="bg-red-500 w-6/12 h-12 p-2 rounded-md items-center flex justify-center" href="/register">
+          <Link className="bg-blue-500 w-6/12 h-12 p-2 rounded-md items-center flex justify-center" href="/register">
             <button >
               Info Lanjutan
             </button>
