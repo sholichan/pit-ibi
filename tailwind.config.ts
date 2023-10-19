@@ -20,6 +20,11 @@ const config: Config = {
       lg: '976px',
       xl: '1440px',
     },
+    // colors: {
+    //   transparent: 'transparent',
+    //   current: 'currentColor',
+    //   'danone': '#3b47a7',
+    // },
   },
   variants: {},
   plugins: [ require('tailwindcss-animated')],

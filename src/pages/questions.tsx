@@ -20,7 +20,7 @@ type QuizItem = {
 type Quiz = {
   [key: number]: QuizItem;
 };
-const quiz:Quiz = {
+const quiz: Quiz = {
   1: {
     question: '1. SGM dengan (…) formulasi unik gabungan Zat Besi (Iron) dan Vitamin C yang dapat bantu meningkatkan penyerapan zat besi 2X Lipat.',
     answer1: {
@@ -77,23 +77,24 @@ export default function Question() {
   }
   return (
     <Layout>
-      <div className="flex flex-wrap w-auto lg:w-80 p-2 justify-center items-center h-fit my-5 ">
-        <h1 className="font-extrabold  text-white text-xl bg-sky-500 w-full text-center p-5 mb-10 rounded-lg">PERTANYAAN 1</h1>
-        <div className="flex flex-wrap justify-center text-sky-600 text-center bg bg-white p-5 mb-10 rounded-lg">
-          <h1 className="font-bold text-lg mb-10">{quiz[currentQuestion].question}</h1>
-          <h1 className={isAnswera ? "font-medium  text-white bg-green-500 w-2/3 text-center p-5 mb-10 rounded-lg" :
-            "font-medium  text-white bg-sky-500 w-2/3 text-center p-5 mb-10 rounded-lg"}
+      <div className="bg-indigo-800 flex flex-wrap w-full p-2 justify-center items-center h-full">
+        <h1 className="font-extrabold  text-gray-200 w-full text-xl text-center p-5 rounded-lg">{`PERTANYAAN ${currentQuestion}`}</h1>
+        <div className="lg:w-1/3 w-72 h-auto flex flex-wrap justify-center text-indigo-800 text-center bg bg-white p-5 rounded-lg">
+          <h1 className="font-bold text-base lg:text-xl mb-10">{quiz[currentQuestion].question}</h1>
+          <h1 className={isAnswera ? "font-medium  text-white bg-green-500 w-2/3 text-center p-5 mb-10 rounded-full" :
+            "font-medium  text-white bg-indigo-800 w-2/3 text-center p-5 mb-10 rounded-full"}
             onClick={() => (setAnswera(quiz[currentQuestion].answer1.a.status), setAnswerb(quiz[currentQuestion].answer1.b.status))}>
             {quiz[currentQuestion].answer1.a.answer}</h1>
-          <h1 className={isAnswerb ? "font-medium  text-white bg-green-500 w-2/3 text-center p-5 mb-10 rounded-lg" :
-            "font-medium  text-white bg-sky-500 w-2/3 text-center p-5 mb-10 rounded-lg"}
+          <h1 className={isAnswerb ? "font-medium  text-white bg-green-500 w-2/3 text-center p-5 mb-5 rounded-full" :
+            "font-medium  text-white bg-indigo-800 w-2/3 text-center p-5 mb-5 rounded-full"}
             onClick={() => (setAnswera(quiz[currentQuestion].answer1.a.status), setAnswerb(quiz[currentQuestion].answer1.b.status))}>
             {quiz[currentQuestion].answer1.b.answer}</h1>
         </div>
-
-        <button className="bg-sky-500 w-2/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" onClick={handleNextQuestion}>
-          Next
-        </button>
+        <div className="w-full h-fit flex justify-center font-medium text-gray-950">
+          <button className="bg-gray-200 w-1/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" onClick={handleNextQuestion}>
+            Next
+          </button>
+        </div>
       </div>
     </Layout>
   )
