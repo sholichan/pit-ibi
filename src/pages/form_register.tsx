@@ -14,7 +14,7 @@ export default function FormRegister() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('/api/getuser?kota=Sumenep&name=Kusmawati');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}api/getuser?kota=Kabupaten Kerinci&name=Erna`);
         const result = await response.json();
         setData(result);
         console.log(result);
@@ -48,13 +48,13 @@ export default function FormRegister() {
     <Layout>
       <Header />
       <Footer />
-      <div className="fixed w-80 h-3/5 bg-white outline outline-1 outline-indigo-800 top-60 left-7 rounded-2xl lg:w-11/12 p-2">
-        <h1 className="font-medium rounded-lg text-center text-sm lg:text-lg w-full h-fit bg-indigo-800 flex py-4 justify-center">Isi data berikut dengan benar dan lengkap</h1>
-        <div className="flex w-full h-2/3 overflow-auto bg-white outline outline-1 outline-indigo-800 rounded-lg lg:p-4 ">
-          <div className="flex flex-wrap justify-center items-center outline">
-            <form className=" text-gray-950 w-full h-fit flex flex-wrap p-5 mx-0.5 mb-5 justify-start">
+      <div className="fixed w-80 h-3/5 bg-white outline outline-1 outline-indigo-800 inset-1/2 -translate-x-1/2 -translate-y-1/4 rounded-2xl lg:w-11/12 p-2">
+        <h1 className="font-medium rounded-lg text-white text-center text-sm lg:text-lg w-full h-fit bg-indigo-800 flex py-4 justify-center">Isi data berikut dengan benar dan lengkap</h1>
+        <div className="flex w-full h-2/3 justify-center bg-white outline outline-1 outline-indigo-800 rounded-lg lg:p-4 ">
+          <div className="flex flex-wrap justify-center items-center overflow-auto lg:w-2/3">
+            <form className=" text-gray-950 w-auto h-fit flex flex-wrap p-5 lg:p-0 mx-0.5 mb-5 justify-start">
               <label className="p-1 w-full font-bold text-sm my-2 flex lg:justify-center">Asal Kota/ Kabupaten :</label>
-              <select id="cities" defaultValue="Pilih Kota" className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-60 lg:text-center lg:mb-5">
+              <select id="cities" defaultValue="Pilih Kota" className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-5 lg:text-center lg:mb-5">
                 {cities.map((cities, i) => (
                   <option className="mt-10" key={i} value={cities}>{cities}</option>
                 ))}
@@ -62,7 +62,7 @@ export default function FormRegister() {
 
               <label className="p-1 w-full font-bold text-sm my-2 flex lg:justify-center">Nama :</label>
               <input
-                className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-60 lg:placeholder:text-center lg:mb-5"
+                className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-5 lg:placeholder:text-center lg:mb-5"
                 id="name"
                 type="text"
                 placeholder="Nama"
@@ -71,7 +71,7 @@ export default function FormRegister() {
               />
               <label className="p-1 w-full font-bold text-sm my-2 flex lg:justify-center">Nomer Whatsapp (WA) :</label>
               <input
-                className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-60 lg:placeholder:text-center lg:mb-5"
+                className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-5 lg:placeholder:text-center lg:mb-5"
                 id="phone"
                 type="text"
                 placeholder="+62"
@@ -80,7 +80,7 @@ export default function FormRegister() {
               />
               <label className="p-1 w-full font-bold text-sm my-2 flex lg:justify-center">Alamat E-Mail :</label>
               <input
-                className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-60 lg:placeholder:text-center lg:mb-5"
+                className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-5 lg:placeholder:text-center lg:mb-5"
                 id="email"
                 type="text"
                 placeholder="Email"
@@ -88,7 +88,7 @@ export default function FormRegister() {
                 value={formik.values.email}
               />
               <label className="p-1 w-full font-bold text-sm my-2 flex lg:justify-center">Institusi Tempat Bekerja :</label>
-              <div className="bg-white flex flex-wrap w-fit h-fit mb-4 rounded-lg border border-indigo-800 lg:mx-60 p-5">
+              <div className="bg-white flex flex-wrap w-fit h-fit mb-4 rounded-lg border border-indigo-800 lg:mx-5 p-5">
                 {
                   institution.map((inst, i) => (
                     <div key={i} className="flex flex-wrap w-full items-center mb-4 ">
@@ -110,14 +110,14 @@ export default function FormRegister() {
               </div>
               <label className="p-1 w-full font-bold text-sm my-2 flex lg:justify-center">Nama Institusi Tempat Bekerja :</label>
               <input
-                className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-60 lg:placeholder:text-center lg:mb-5"
+                className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-5 lg:placeholder:text-center lg:mb-5"
                 id="institution_name"
                 type="text"
                 placeholder="Kab/Kota"
                 onChange={formik.handleChange}
                 value={formik.values.institution_name}
               />
-              <div className="bg-white flex flex-wrap items-center h-fit p-5 mb-4 rounded-lg">
+              <div className="bg-white flex flex-wrap items-center justify-start h-fit p-5 mb-4 rounded-lg lg:w-full">
                 <p className=" text-gray-950  text-sm w-full h-fit outline-indigo-800 bg-white flex  mb-5 justify-center">
                   Saya bersedia menerima segala informasi terkait kegiatan yang saya ikuti ini dan informasi terkait produk Nutrisi Nutricia Sarihusada melalui: Email, Whatsapp, Telpon.
                 </p>
@@ -128,8 +128,8 @@ export default function FormRegister() {
 
           </div>
         </div>
-        <div className="w-full flex justify-center p-5">
-          <Link className="bg-indigo-800 w-6/12 h-12 p-2 rounded-md items-center flex justify-center" href="/questions">
+        <div className="w-full flex justify-center p-5 lg:p-3 text-white font-medium">
+          <Link className="bg-indigo-800 w-6/12 h-10 p-2 rounded-md items-center flex justify-center" href="/questions">
             <button >
               Submit
             </button>
