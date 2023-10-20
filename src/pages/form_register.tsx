@@ -197,7 +197,7 @@ export default function FormRegister() {
                 id="nama_institusi"
                 name="nama_institusi"
                 type="text"
-                placeholder="Kab/Kota"
+                placeholder="Nama Institusi"
                 onChange={formik.handleChange}
                 value={formik.values.nama_institusi}
               />
