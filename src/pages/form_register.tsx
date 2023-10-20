@@ -5,11 +5,12 @@ import * as Yup from 'yup';
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { cities } from "@/components/cities";
+import { relative } from "path";
 
-export default function FormRegister() {
+export default function FromRegisterDump() {
   const [sugesData, setSugesData] = useState([]);
-  const [isReadySubmit, setReadySubmit] = useState(false)
-  const [selectedName, setSelectedName] = useState('')
+  const [isReadySubmit, setIsReadySubmit] = useState(false);
+  const [selectedName, setSelectedName] = useState("");
 
   async function fetchData(data: any) {
     try {
@@ -51,7 +52,7 @@ export default function FormRegister() {
       nama_institusi: '',
     },
     onSubmit: values => {
-      if(!isReadySubmit) return alert('Anda harus menyetujui persyaratan')
+      if (!isReadySubmit) return alert('Anda harus menyetujui persyaratan')
       fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/register`, {
         method: 'POST',
         headers: {
@@ -87,35 +88,52 @@ export default function FormRegister() {
     return () => clearTimeout(delayInputTimeoutId);
   }, [formik.values.name, 500])
   return (
-    <Layout>
+    <div style={{ minHeight: "100vh", backgroundColor: "#e5e7eb" }}>
       <Header />
-      <Footer />
-      <div className="fixed w-80 h-3/5 bg-white outline outline-1 outline-indigo-800 inset-1/2 -translate-x-1/2 -translate-y-1/4 rounded-2xl lg:w-11/12 p-2">
-        <h1 className="font-medium rounded-lg text-white text-center text-sm lg:text-lg w-full h-fit bg-indigo-800 flex py-4 justify-center">Isi data berikut dengan benar dan lengkap</h1>
-        <div className="flex w-full h-2/3 height-content justify-center bg-white outline outline-1 outline-indigo-800 rounded-lg lg:p-4 ">
-          <div className="flex flex-wrap justify-center items-center overflow-auto lg:w-2/3">
-            <form onSubmit={formik.handleSubmit} className=" text-gray-950 w-auto h-fit flex flex-wrap p-5 lg:p-0 mx-0.5 mb-5 justify-start">
-              <label className="p-1 w-full font-bold text-sm my-2 flex lg:justify-center">Asal Kota/ Kabupaten :</label>
-              <select id="cities" defaultValue="Pilih Kota" onChange={formik.handleChange} name="kota" className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-5 lg:text-center lg:mb-5">
-                {cities.map((cities, i) => (
-                  <option className="mt-10" key={i} value={cities}>{cities}</option>
-                ))}
-              </select>
-              <label className="p-1 w-full font-bold text-sm my-2 flex lg:justify-center">Nama :</label>
-              <input
-                className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-5 lg:placeholder:text-center lg:mb-5"
-                id="name"
-                type="text"
-                placeholder="Nama"
-                name="name"
-                onChange={formik.handleChange}
-                value={formik.values.name}
-              />
-              <div id="suges" className="px-4">
+      <div className="w-full px-5 lg:px-20 content-wrapper">
+        <div className="bg-white outline outline-1 p-3 lg:px-20 lg:py-10 outline-indigo-800 rounded-2xl shadow-md content">
+          <div className="outline outline-1 outline-indigo-800 rounded-lg">
+            <div className="font-medium p-3 rounded-t-lg text-white text-center text-sm lg:text-lg w-full h-fit bg-indigo-800">
+              Isi data berikut dengan benar dan lengkap
+            </div>
+            <form onSubmit={formik.handleSubmit} className="text-gray-950 p-3">
+              <div className="mb-2">
+                <label className="font-bold">Asal Kota/Kabupaten</label>
+                <select
+                  className="w-full border border-gray-300 rounded-md p-2 outline-none focus:ring-2 focus:ring-indigo-800"
+                  name="kota"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.kota}
+                >
+                  {cities.map((city, index) => (
+                    <option key={index} value={city}>{city}</option>
+                  ))}
+                </select>
+                {formik.touched.kota && formik.errors.kota ? (
+                  <div className="text-red-500 text-sm">{formik.errors.kota}</div>
+                ) : null}
+              </div>
+              <div className="mb-2">
+                <label className="font-bold">Nama</label>
+                <input
+                  className="w-full border border-gray-300 rounded-md p-2 outline-none focus:ring-2 focus:ring-indigo-800"
+                  type="text"
+                  name="name"
+                  placeholder="Nama"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.name}
+                />
+                {formik.touched.name && formik.errors.name ? (
+                  <div className="text-red-500 text-sm">{formik.errors.name}</div>
+                ) : null}
+              </div>
+              <div id="suges" className="mb-3">
                 <ul>
                   {
                     sugesData.map((data: any, i) => (
-                      <li key={i} onClick={() => {
+                      <li key={i} className="p-1" onClick={() => {
                         formik.setFieldValue('name', data.name)
                         formik.setFieldValue('whatsapp', data.whatsapp)
                         formik.setFieldValue('email', data.email)
@@ -123,117 +141,137 @@ export default function FormRegister() {
                         formik.setFieldValue('nama_institusi', data.nama_institusi)
                         setSugesData([])
                         setSelectedName(data.name)
-                      }}>{data.name}</li>
+                      }}>
+                        <span className="p-1 px-3 bg-indigo-800 text-white rounded-sm">
+                          {data.name}
+                        </span>
+                      </li>
                     ))
                   }
                 </ul>
               </div>
-              <label className="p-1 w-full font-bold text-sm my-2 flex lg:justify-center">Nomer Whatsapp (WA) :</label>
-              <input
-                className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-5 lg:placeholder:text-center lg:mb-5"
-                id="whatsapp"
-                name="whatsapp"
-                type="text"
-                placeholder="+62"
-                onChange={formik.handleChange}
-                value={formik.values.whatsapp}
-              />
-              <label className="p-1 w-full font-bold text-sm my-2 flex lg:justify-center">Alamat E-Mail :</label>
-              <input
-                className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-5 lg:placeholder:text-center lg:mb-5"
-                id="email"
-                name="email"
-                type="text"
-                placeholder="Email"
-                onChange={formik.handleChange}
-                value={formik.values.email}
-              />
-              <label className="p-1 w-full font-bold text-sm my-2 flex lg:justify-center">Institusi Tempat Bekerja :</label>
-              <div className="bg-white flex flex-wrap w-full h-fit mb-4 rounded-lg border border-indigo-800 lg:mx-5 p-5">
-                {
-                  institution.map((inst, i) => (
-                    <div key={i} className="flex flex-wrap w-full items-center mb-4 ">
-                      <input
-                        id={`instansi-${inst}`}
-                        checked={inst === formik.values.institusi}
-                        type="radio"
-                        name="institusi"
-                        onChange={formik.handleChange}
-                        value={inst}
-                        className="w-4 h-4 checked:accent-indigo-800 ring-indigo-800"
-                      />
-                      <label htmlFor={`instansi-${inst}`} className="ml-2 text-sm font-medium text-gray-900">{inst}</label>
-                    </div>
-                  ))
-                }
+              <div className="mb-2">
+                <label className="font-bold">Nomor Whatsapp</label>
                 <input
-                  id="default-checkbox"
-                  type="radio"
-                  checked={institution.every((inst) => {
-                    return inst !== formik.values.institusi
-                  })}
-                  name="institusi"
-                  value=""
-                  onChange={formik.handleChange}
-                  className="w-4 h-4 checked:accent-indigo-800" />
-                <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-gray-900">Other</label>
-                <input
-                  className="bg-transparent text-gray-900 text-sm w-3/5 lg:w-2/4 mx-2 focus:outline-none border-b border-gray-900 "
-                  id="other"
+                  className="w-full border border-gray-300 rounded-md p-2 outline-none focus:ring-2 focus:ring-indigo-800"
                   type="text"
-                  name="institusi"
-                  placeholder="ketik jenis institusi anda"
+                  name="whatsapp"
+                  placeholder="+62"
                   onChange={formik.handleChange}
-                  value={
-                    institution.every((inst) => {
-                      return inst !== formik.values.institusi
-                    }) ? formik.values.institusi : ''
-                  }
+                  onBlur={formik.handleBlur}
+                  value={formik.values.whatsapp}
                 />
+                {formik.touched.whatsapp && formik.errors.whatsapp ? (
+                  <div className="text-red-500 text-sm">{formik.errors.whatsapp}</div>
+                ) : null}
               </div>
-              <label className="p-1 w-full font-bold text-sm my-2 flex lg:justify-center">Nama Institusi Tempat Bekerja :</label>
-              <input
-                className="bg-none border border-indigo-800 text-gray-900 text-sm rounded-lg focus:outline-indigo-800 block w-full p-2 mb-5 lg:mx-5 lg:placeholder:text-center lg:mb-5"
-                id="nama_institusi"
-                name="nama_institusi"
-                type="text"
-                placeholder="Nama Institusi"
-                onChange={formik.handleChange}
-                value={formik.values.nama_institusi}
-              />
-              <div className="bg-white flex flex-wrap items-center justify-start h-fit p-5 mb-4 rounded-lg lg:w-full">
-                <p className=" text-gray-950  text-sm w-full h-fit outline-indigo-800 bg-white flex  mb-5 justify-center">
-                  Saya bersedia menerima segala informasi terkait kegiatan yang saya ikuti ini dan informasi terkait produk Nutrisi Nutricia Sarihusada melalui: Email, Whatsapp, Telpon.
-                </p>
+              <div className="mb-2">
+                <label className="font-bold">Email</label>
                 <input
-                  id="setuju-checkbox"
-                  type="checkbox"
-                  onChange={() => setReadySubmit(!isReadySubmit)}
-                  name="setuju"
-                  className="w-4 h-4 text-indigo-800 bg-gray-100 border-indigo-800 rounded checked:accent-indigo-800"
+                  className="w-full border border-gray-300 rounded-md p-2 outline-none focus:ring-2 focus:ring-indigo-800"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
                 />
-                <label htmlFor="setuju-checkbox" className="ml-2 text-sm font-medium text-gray-900" onChange={() => setReadySubmit(!isReadySubmit)}>Setuju</label>
-                <div className="w-full">
+                {formik.touched.email && formik.errors.email ? (
+                  <div className="text-red-500 text-sm">{formik.errors.email}</div>
+                ) : null}
+              </div>
+              <div className="mb-2">
+                <label className="font-bold">Institusi</label>
+                <div className="flex flex-wrap w-full h-fit mb-4 rounded-lg border border-indigo-800 p-3">
                   {
-                    // map error formik
-                    Object.keys(formik.errors).map((key: any, i) => {
-                      return (
-                        <p key={i} className="text-red-500 text-xs">{key} wajib diisi</p>
-                      )
-                    })
+                    institution.map((inst, i) => (
+                      <div key={i} className="flex flex-wrap w-full items-center mb-4 ">
+                        <input
+                          id={`instansi-${inst}`}
+                          checked={inst === formik.values.institusi}
+                          type="radio"
+                          name="institusi"
+                          onChange={formik.handleChange}
+                          value={inst}
+                          className="w-4 h-4 checked:accent-indigo-800 ring-indigo-800"
+                        />
+                        <label htmlFor={`instansi-${inst}`} className="ml-2 text-sm font-medium text-gray-900">{inst}</label>
+                      </div>
+                    ))
                   }
+                  <input
+                    id="default-checkbox"
+                    type="radio"
+                    checked={institution.every((inst) => {
+                      return inst !== formik.values.institusi
+                    })}
+                    name="institusi"
+                    value=""
+                    onChange={formik.handleChange}
+                    className="w-4 h-4 checked:accent-indigo-800" />
+                  <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-gray-900">Other</label>
+                  <input
+                    className="bg-transparent text-gray-900 text-sm w-3/5 lg:w-2/4 mx-2 focus:outline-none border-b border-gray-900 "
+                    id="other"
+                    type="text"
+                    name="institusi"
+                    placeholder="ketik jenis institusi anda"
+                    onChange={formik.handleChange}
+                    value={
+                      institution.every((inst) => {
+                        return inst !== formik.values.institusi
+                      }) ? formik.values.institusi : ''
+                    }
+                  />
+                  {formik.touched.institusi && formik.errors.institusi ? (
+                    <div className="text-red-500 text-sm">{formik.errors.institusi}</div>
+                  ) : null}
                 </div>
-                <div className="w-full flex justify-center pt-3 text-white font-medium">
-                  {/* warning error formik */}
-                  <button type="submit" className="bg-indigo-800 w-full h-10 p-2 rounded-md items-center flex justify-center" >
-                    Submit
-                  </button>
+              </div>
+              <div className="mb-8">
+                <label className="font-bold">Nama Institusi</label>
+                <input
+                  className="w-full border border-gray-300 rounded-md p-2 outline-none focus:ring-2 focus:ring-indigo-800"
+                  type="text"
+                  name="nama_institusi"
+                  placeholder="Nama Institusi"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.nama_institusi}
+                />
+                {formik.touched.nama_institusi && formik.errors.nama_institusi ? (
+                  <div className="text-red-500 text-sm">{formik.errors.nama_institusi}</div>
+                ) : null}
+              </div>
+              <div className="mb-5">
+                {/* checkbox setuju */}
+                <div className="flex items-top">
+                  <input
+                    id="setuju"
+                    type="checkbox"
+                    name="setuju"
+                    onChange={() => setIsReadySubmit(!isReadySubmit)}
+                    className="w-4 h-4 checked:accent-indigo-800 ring-indigo-800"
+                  />
+                  <label htmlFor="setuju" className="ml-2 text-sm font-medium text-gray-900">
+                    Saya adalah tenaga Kesehatan dan saya bersedia menerima segala informasi terkait kegiatan yang saya ikuti ini dan informasi terkait produk Nutrisi Nutricia Sarihusada melalui: Email, Whatsapp, Telpon.
+                  </label>
                 </div>
+              </div>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  className="bg-indigo-800 text-white w-full font-bold py-2 px-4 rounded-lg"
+                >
+                  Submit
+                </button>
               </div>
             </form>
           </div>
         </div>
       </div>
-    </Layout>
+      <div style={{ zIndex: '1' }} className="fixed w-full h-12  bg-indigo-800 bottom-0 left-0 rounded-t-3xl">
+      </div>
+    </div>
   )
 }

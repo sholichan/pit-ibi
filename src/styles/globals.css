@@ -31,9 +31,19 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-.height-content {
-  height: 88.666667%;
+.content-wrapper {
+  margin-top: -130px;
+  z-index: 4;
+  position: relative;
 }
-.h-12 {
-  height: 2rem !important;
+.content {
+  min-height: 70vh;
+  max-height: 70vh;
+  overflow-y: scroll;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    margin-top: -50px;
+  }
 }
