@@ -14,7 +14,7 @@ type Data = {
   status: string
 }
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
@@ -33,31 +33,64 @@ export default function handler(
       }
       res.status(400).json(error);
     } else {
-      User.create({
-        data: {
-          name: name,
-          kota: kota,
-          email: email,
-          whatsapp: whatsapp,
-          institusi: institusi,
-          nama_institusi: nama_institusi,
-        },
-      })
-        .then((data) => {
-          const response: Data = {
-            data: data,
-            status: '200',
-            message: 'OK',
-          }
-          res.status(200).json(response);
+      const useremail = await User.findFirst(
+        {
+          where: {
+            email: {
+              equals: email, // Default mode
+            },
+          },
+        }
+      )
+      if (useremail) {
+        const update = await User.update({
+          where: {
+            email: email,
+          },
+          data: {
+            name: name,
+            kota: kota,
+            email: email,
+            whatsapp: whatsapp,
+            institusi: institusi,
+            nama_institusi: nama_institusi,
+            attend: 1,
+          },
         })
-        .catch((error) => {
-          const response: Data = {
-            status: '400',
-            message: 'email already exist',
-          }
-          res.status(400).json(response);
+        const response: Data = {
+          data: update,
+          status: '200',
+          message: 'OK',
+        }
+        res.status(200).json(response);
+      } else {
+        User.create({
+          data: {
+            name: name,
+            kota: kota,
+            email: email,
+            whatsapp: whatsapp,
+            institusi: institusi,
+            nama_institusi: nama_institusi,
+            attend: 1,
+          },
         })
+          .then((data) => {
+            const response: Data = {
+              data: data,
+              status: '200',
+              message: 'OK',
+            }
+            res.status(200).json(response);
+          })
+          .catch((error) => {
+            const response: Data = {
+              status: '400',
+              message: 'email already exist',
+            }
+            res.status(400).json(response);
+          })
+      }
     }
   }
 }

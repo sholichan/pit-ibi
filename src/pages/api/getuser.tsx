@@ -10,10 +10,10 @@ export default async function handler(
     {
       where: {
         kota: {
-          equals: kota as string, // Default mode
+          contains: (kota as string).toLowerCase(), // Default mode
         },
         name: {
-          contains: name as string, // Default mode
+          contains: (name as string).toLowerCase(), // Default mode
         },
       },
     }

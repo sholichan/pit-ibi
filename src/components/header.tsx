@@ -1,6 +1,6 @@
 import Image from "next/image"
 import ibi from "../../public/img/ibi.png"
-import danone from "../../public/img/danone.jpeg"
+import danone from "../../public/img/danone.png"
 
 export default function Header() {
   return (

@@ -30,3 +30,10 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.height-content {
+  height: 88.666667%;
+}
+.h-12 {
+  height: 2rem !important;
+}

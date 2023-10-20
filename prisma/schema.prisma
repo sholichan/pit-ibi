@@ -18,6 +18,7 @@ model User {
   whatsapp        String?
   institusi       String?
   nama_institusi  String?
+  attend          Int        @default(0)
   user_quiz       QuizUserAnswer[]
 }
 
