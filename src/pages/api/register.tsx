@@ -1,7 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import User from '../../models/Users';
 
 type Data = {
   data?: {
@@ -35,7 +33,7 @@ export default function handler(
       }
       res.status(400).json(error);
     } else {
-      prisma.user.create({
+      User.create({
         data: {
           name: name,
           kota: kota,

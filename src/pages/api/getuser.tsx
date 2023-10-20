@@ -1,14 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient();
+import User from '../../models/Users';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const { kota, name } = req.query;
-  const users = await prisma.user.findMany(
+  const users = await User.findMany(
     {
       where: {
         kota: {

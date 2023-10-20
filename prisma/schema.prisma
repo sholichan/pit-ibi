@@ -18,4 +18,15 @@ model User {
   whatsapp        String?
   institusi       String?
   nama_institusi  String?
+  user_quiz       QuizUserAnswer[]
+}
+
+model QuizUserAnswer {
+  id              Int        @id @default(autoincrement())
+  user            User        @relation(fields: [user_id], references: [id])
+  user_id         Int
+  quiz            Int?
+  pertanyaan      String?
+  jawaban         String?
+  status          Int?
 }
