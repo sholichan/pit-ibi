@@ -90,7 +90,7 @@ export default function FromRegisterDump() {
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#e5e7eb" }}>
       <Header />
-      <div className="w-full px-5 lg:px-20 content-wrapper">
+      <div className="w-full px-5 lg:px-20 content-wrapper pb-5">
         <div className="bg-white outline outline-1 p-3 lg:px-20 lg:py-10 outline-indigo-800 rounded-2xl shadow-md content">
           <div className="outline outline-1 outline-indigo-800 rounded-lg">
             <div className="font-medium p-3 rounded-t-lg text-white text-center text-sm lg:text-lg w-full h-fit bg-indigo-800">

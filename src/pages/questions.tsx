@@ -2,9 +2,8 @@ import Link from "next/link"
 import Layout from "../components/layout"
 import { useState } from "react"
 
-
 type QuizItem = {
-  id:number,
+  id: number,
   question: string;
   answer1: {
     a: {
@@ -23,7 +22,7 @@ type Quiz = {
 };
 const quiz: Quiz = {
   1: {
-    id:1,
+    id: 1,
     question: 'SGM dengan (…) formulasi unik gabungan Zat Besi (Iron) dan Vitamin C yang dapat bantu meningkatkan penyerapan zat besi 2X Lipat.',
     answer1: {
       a: {
@@ -37,7 +36,7 @@ const quiz: Quiz = {
     },
   },
   2: {
-    id:2,
+    id: 2,
     question: 'SGM dengan DHA dari Minyak Ikan (…) berkualitas, salah satu minyak ikan terbaik dengan Kandungan DHA 2x Lipat.',
     answer1: {
       a: {
@@ -51,7 +50,7 @@ const quiz: Quiz = {
     },
   },
   3: {
-    id:3,
+    id: 3,
     question: '(….) merupakan kombinasi unik dari AA, DHA, LA dari Bebelove untuk perkembangan otak',
     answer1: {
       a: {
@@ -65,7 +64,7 @@ const quiz: Quiz = {
     },
   },
   4: {
-    id:1,
+    id: 1,
     question: '(….) merupakan prebiotik yang paling banyak diteliti dan terbukti klinis memperbaiki frekuensi BAB, melunakkan konsistensi feses dan menaikkan jumlah bakteri baik.',
     answer1: {
       a: {
@@ -79,7 +78,7 @@ const quiz: Quiz = {
     },
   },
   5: {
-    id:2,
+    id: 2,
     question: 'Jika ASI tidak dapat diberikan karena indikasi medis, Formula isolat protein soya merupakan nutrisi alternatif untuk indikasi gejala alergi (…)',
     answer1: {
       a: {
@@ -93,7 +92,7 @@ const quiz: Quiz = {
     },
   },
   6: {
-    id:3,
+    id: 3,
     question: 'SGM Bunda dengan Formulasi Tinggi Zat Besi, kandungan zat besi dalam 1 Gelas SGM Bunda setara dengan (…) Gelas Susu Sapi Segar',
     answer1: {
       a: {
@@ -115,6 +114,8 @@ export default function Question() {
   const [isDone, setDone] = useState(false);
   const [bgAnswer, setBgAnswer] = useState('bg-indigo-800');
   const [showNext, setShowNext] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
+
   const handleNextQuestion = () => {
     if (currentQuestion < Object.keys(quiz).length) {
       setShowNext(!showNext)
@@ -123,6 +124,7 @@ export default function Question() {
       setCurrentQuestion(currentQuestion + 1);
       setBgAnswer('bg-indigo-800')
     } else {
+      setIsOpen(true)
       setDone(true)
     }
   }
@@ -141,27 +143,27 @@ export default function Question() {
     setShowNext(true)
     const quiz = {
       "pertanyaan": data.pertanyaan.question,
-        "jawaban": [
-          {
-            "title": data.pertanyaan.answer1.a.answer,
-            "correct": data.pertanyaan.answer1.a.correct
-          },
-          {
-            "title": data.pertanyaan.answer1.b.answer,
-            "correct": data.pertanyaan.answer1.b.correct
-          }
-        ]
+      "jawaban": [
+        {
+          "title": data.pertanyaan.answer1.a.answer,
+          "correct": data.pertanyaan.answer1.a.correct
+        },
+        {
+          "title": data.pertanyaan.answer1.b.answer,
+          "correct": data.pertanyaan.answer1.b.correct
+        }
+      ]
     }
     const postData = {
       "user_id": localStorage.getItem('antrian'),
       "pertanyaan": JSON.stringify(quiz),
-      "jawaban" : data.jawaban,
-      "status" : data.pertanyaan.answer1.a.correct ? 1 : 0,
-      "quiz" : data.pertanyaan.id,
+      "jawaban": data.jawaban,
+      "status": data.pertanyaan.answer1.a.correct ? 1 : 0,
+      "quiz": data.pertanyaan.id,
     }
-    setAnswera(data.pertanyaan.answer1.a.correct), 
-    setAnswerb(data.pertanyaan.answer1.b.correct)
-    if (data.pertanyaan.answer1.a.correct==isAnswera) {
+    setAnswera(data.pertanyaan.answer1.a.correct),
+      setAnswerb(data.pertanyaan.answer1.b.correct)
+    if (data.pertanyaan.answer1.a.correct == isAnswera) {
       setBgAnswer('bg-red-800')
     }
     postAnswer(postData)
@@ -170,33 +172,65 @@ export default function Question() {
     setShowNext(true)
     const quiz = {
       "pertanyaan": data.pertanyaan.question,
-        "jawaban": [
-          {
-            "title": data.pertanyaan.answer1.a.answer,
-            "correct": data.pertanyaan.answer1.a.correct
-          },
-          {
-            "title": data.pertanyaan.answer1.b.answer,
-            "correct": data.pertanyaan.answer1.b.correct
-          }
-        ]
+      "jawaban": [
+        {
+          "title": data.pertanyaan.answer1.a.answer,
+          "correct": data.pertanyaan.answer1.a.correct
+        },
+        {
+          "title": data.pertanyaan.answer1.b.answer,
+          "correct": data.pertanyaan.answer1.b.correct
+        }
+      ]
     }
     const postData = {
       "user_id": localStorage.getItem('antrian'),
       "pertanyaan": JSON.stringify(quiz),
-      "jawaban" : data.jawaban,
-      "status" : data.pertanyaan.answer1.b.correct ? "1" : "0",
-      "quiz" : data.pertanyaan.id,
+      "jawaban": data.jawaban,
+      "status": data.pertanyaan.answer1.b.correct ? "1" : "0",
+      "quiz": data.pertanyaan.id,
     }
-    setAnswera(data.pertanyaan.answer1.a.correct), 
-    setAnswerb(data.pertanyaan.answer1.b.correct)
-    if (data.pertanyaan.answer1.b.correct==isAnswera) {
+    setAnswera(data.pertanyaan.answer1.a.correct),
+      setAnswerb(data.pertanyaan.answer1.b.correct)
+    if (data.pertanyaan.answer1.b.correct == isAnswera) {
       setBgAnswer('bg-red-800')
     }
     postAnswer(postData)
   }
   return (
     <Layout>
+      {/* Modal Component */}
+      <div className="fixed z-10 inset-0 overflow-y-auto" style={{ display: `${isOpen ? '' : 'none'}` }}>
+        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+          <div className="fixed inset-0 transition-opacity" aria-hidden="true" onClick={() => {
+            setIsOpen(false)
+          }}>
+            <div className="absolute inset-0 flex align-items-center" style={{ background: '#000000ba' }}>
+              {/* Card Modal */}
+              <div className="bg-white w-11/12 lg:w-1/2 m-auto rounded-lg shadow-lg overflow-hidden">
+                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                  <div className="sm:flex sm:items-start">
+                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                      <div className="mt-2">
+                        <p className="text-sm text-gray-500">
+                          Selamat anda berhak atas 1 buah goodiebag persembahan Danone nutricia sarihusada
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                  <Link href="/home" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-800 text-base font-medium text-white hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Home
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-indigo-800 flex flex-wrap space-y-5 w-full justify-center content-start h-full py-14">
         <h1 className="font-extrabold  text-gray-200 w-full text-xl text-center rounded-lg">{`PERTANYAAN ${currentQuestion}`}</h1>
         <div className="lg:w-1/3 w-72 py-10 h-auto flex flex-wrap justify-center text-indigo-800 text-center bg bg-white p-5 rounded-lg">
@@ -229,7 +263,7 @@ export default function Question() {
               </button>
             </Link>
           ) : (
-            <button style={{display : `${ showNext ? '' : 'none'}`}} className="bg-white w-1/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" onClick={handleNextQuestion}>
+            <button style={{ display: `${showNext ? '' : 'none'}` }} className="bg-white w-1/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" onClick={handleNextQuestion}>
               Next
             </button>
           )}
