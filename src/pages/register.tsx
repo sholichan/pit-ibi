@@ -11,7 +11,7 @@ export default function Register() {
     <Layout>
       <Header />
       <Footer />
-      <div className="fixed w-80 h-3/5 bg-white outline outline-1 outline-indigo-800 inset-1/2 -translate-x-1/2 -translate-y-1/4 rounded-2xl lg:w-11/12 p-2">
+      <div className="absolute w-80 h-3/5 bg-white outline outline-1 outline-indigo-800 inset-1/2 -translate-x-1/2 -translate-y-1/4 rounded-2xl lg:w-11/12 p-2">
         <h1 className="font-medium rounded-lg text-center text-sm text-white lg:text-lg w-full h-fit bg-indigo-800 flex py-4 justify-center">Registration Booth Danone Indonesia</h1>
         <div className="flex flex-wrap w-full h-2/3 overflow-auto bg-white outline outline-1 outline-indigo-800 rounded-lg lg:p-4 ">
           <p className="text-gray-950 text-sm lg:text-base w-full h-fit flex  p-4 mx-0.5 justify-center">

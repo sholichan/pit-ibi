@@ -98,10 +98,11 @@ export default function Question() {
   }
   return (
     <Layout>
-      <div className="bg-indigo-800 flex flex-wrap w-full p-2 justify-center items-center h-full">
-        <h1 className="font-extrabold  text-gray-200 w-full text-xl text-center p-5 rounded-lg">{`PERTANYAAN ${currentQuestion}`}</h1>
-        <div className="lg:w-1/3 w-72 h-auto flex flex-wrap justify-center text-indigo-800 text-center bg bg-white p-5 rounded-lg">
-          <h1 className="font-extrabold text-base lg:text-xl mb-10">{quiz[currentQuestion].question}</h1>
+      
+      <div className="bg-indigo-800 flex flex-wrap space-y-5 w-full justify-center content-start h-full py-14">
+        <h1 className="font-extrabold  text-gray-200 w-full text-xl text-center rounded-lg">{`PERTANYAAN ${currentQuestion}`}</h1>
+        <div className="lg:w-1/3 w-72 py-10 h-auto flex flex-wrap justify-center text-indigo-800 text-center bg bg-white p-5 rounded-lg">
+          <h1 className="font-extrabold text-base lg:text-base mb-10">{quiz[currentQuestion].question}</h1>
 
           <h1 className={isAnswera ? `font-medium hover:cursor-pointer text-white bg-green-500 w-2/3 text-center p-5 mb-10 rounded-full` :
             `font-medium hover:cursor-pointer text-white ${bgAnswer} w-2/3 text-center p-5 mb-10 rounded-full`}
@@ -109,8 +110,8 @@ export default function Question() {
             {quiz[currentQuestion].answer1.a.answer}
           </h1>
 
-          <h1 className={isAnswerb ? `font-medium hover:cursor-pointer text-white bg-green-500 w-2/3 text-center p-5 mb-10 rounded-full` :
-            `font-medium hover:cursor-pointer text-white ${bgAnswer} w-2/3 text-center p-5 mb-10 rounded-full`}
+          <h1 className={isAnswerb ? `font-medium hover:cursor-pointer text-white bg-green-500 w-2/3 text-center p-5 rounded-full` :
+            `font-medium hover:cursor-pointer text-white ${bgAnswer} w-2/3 text-center p-5 rounded-full`}
             onClick={handleClickb}>
             {quiz[currentQuestion].answer1.b.answer}
           </h1>
@@ -118,13 +119,13 @@ export default function Question() {
         </div>
         <div className="w-full h-fit flex justify-center font-bold text-gray-950">
           {isDone ? (
-            <Link className="bg-gray-200 text-green-800 w-1/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" href="/home">
+            <Link className="bg-white text-green-800 w-1/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" href="/home">
               <button >
                 Home
               </button>
             </Link>
           ) : (
-            <button className="bg-gray-200 w-1/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" onClick={handleNextQuestion}>
+            <button className="bg-white w-1/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" onClick={handleNextQuestion}>
               Next
             </button>
           )}
