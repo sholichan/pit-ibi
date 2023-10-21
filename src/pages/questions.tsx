@@ -114,49 +114,111 @@ export default function Question() {
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [isDone, setDone] = useState(false);
   const [bgAnswer, setBgAnswer] = useState('bg-indigo-800');
+  const [showNext, setShowNext] = useState(false);
   const handleNextQuestion = () => {
     if (currentQuestion < Object.keys(quiz).length) {
-      setCurrentQuestion(currentQuestion + 1);
+      setShowNext(!showNext)
       setAnswera(false)
       setAnswerb(false)
+      setCurrentQuestion(currentQuestion + 1);
       setBgAnswer('bg-indigo-800')
     } else {
       setDone(true)
     }
   }
-  const handleClicka = () => {
-    setAnswera(quiz[currentQuestion].answer1.a.correct), 
-    setAnswerb(quiz[currentQuestion].answer1.b.correct)
-    if (quiz[currentQuestion].answer1.a.correct==isAnswera) {
-      setBgAnswer('bg-red-800')
-    } 
+  const postAnswer = async (data: any) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/answer-quiz`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
+    })
+    const json = await res.json()
+    console.log(json)
   }
-  const handleClickb = () => {
-    setAnswera(quiz[currentQuestion].answer1.a.correct), 
-    setAnswerb(quiz[currentQuestion].answer1.b.correct)
-    if (quiz[currentQuestion].answer1.b.correct==isAnswerb) {
+  const handleClicka = (data: any) => {
+    setShowNext(true)
+    const quiz = {
+      "pertanyaan": data.pertanyaan.question,
+        "jawaban": [
+          {
+            "title": data.pertanyaan.answer1.a.answer,
+            "correct": data.pertanyaan.answer1.a.correct
+          },
+          {
+            "title": data.pertanyaan.answer1.b.answer,
+            "correct": data.pertanyaan.answer1.b.correct
+          }
+        ]
+    }
+    const postData = {
+      "user_id": localStorage.getItem('antrian'),
+      "pertanyaan": JSON.stringify(quiz),
+      "jawaban" : data.jawaban,
+      "status" : data.pertanyaan.answer1.a.correct ? 1 : 0,
+      "quiz" : data.pertanyaan.id,
+    }
+    setAnswera(data.pertanyaan.answer1.a.correct), 
+    setAnswerb(data.pertanyaan.answer1.b.correct)
+    if (data.pertanyaan.answer1.a.correct==isAnswera) {
       setBgAnswer('bg-red-800')
-    } 
+    }
+    postAnswer(postData)
+  }
+  const handleClickb = (data: any) => {
+    setShowNext(true)
+    const quiz = {
+      "pertanyaan": data.pertanyaan.question,
+        "jawaban": [
+          {
+            "title": data.pertanyaan.answer1.a.answer,
+            "correct": data.pertanyaan.answer1.a.correct
+          },
+          {
+            "title": data.pertanyaan.answer1.b.answer,
+            "correct": data.pertanyaan.answer1.b.correct
+          }
+        ]
+    }
+    const postData = {
+      "user_id": localStorage.getItem('antrian'),
+      "pertanyaan": JSON.stringify(quiz),
+      "jawaban" : data.jawaban,
+      "status" : data.pertanyaan.answer1.b.correct ? "1" : "0",
+      "quiz" : data.pertanyaan.id,
+    }
+    setAnswera(data.pertanyaan.answer1.a.correct), 
+    setAnswerb(data.pertanyaan.answer1.b.correct)
+    if (data.pertanyaan.answer1.b.correct==isAnswera) {
+      setBgAnswer('bg-red-800')
+    }
+    postAnswer(postData)
   }
   return (
     <Layout>
-      
       <div className="bg-indigo-800 flex flex-wrap space-y-5 w-full justify-center content-start h-full py-14">
         <h1 className="font-extrabold  text-gray-200 w-full text-xl text-center rounded-lg">{`PERTANYAAN ${currentQuestion}`}</h1>
         <div className="lg:w-1/3 w-72 py-10 h-auto flex flex-wrap justify-center text-indigo-800 text-center bg bg-white p-5 rounded-lg">
           <h1 className="font-extrabold text-base lg:text-base mb-10">{quiz[currentQuestion].question}</h1>
 
-          <h1 className={isAnswera ? `font-medium hover:cursor-pointer text-white bg-green-500 w-2/3 text-center p-5 mb-10 rounded-full` :
+          <button disabled={showNext} className={isAnswera ? `font-medium hover:cursor-pointer text-white bg-green-500 w-2/3 text-center p-5 mb-10 rounded-full` :
             `font-medium hover:cursor-pointer text-white ${bgAnswer} w-2/3 text-center p-5 mb-10 rounded-full`}
-            onClick={handleClicka}>
+            onClick={() => handleClicka({
+              pertanyaan: quiz[currentQuestion],
+              jawaban: quiz[currentQuestion].answer1.a.answer,
+            })}>
             {quiz[currentQuestion].answer1.a.answer}
-          </h1>
+          </button>
 
-          <h1 className={isAnswerb ? `font-medium hover:cursor-pointer text-white bg-green-500 w-2/3 text-center p-5 rounded-full` :
+          <button disabled={showNext} className={isAnswerb ? `font-medium hover:cursor-pointer text-white bg-green-500 w-2/3 text-center p-5 rounded-full` :
             `font-medium hover:cursor-pointer text-white ${bgAnswer} w-2/3 text-center p-5 rounded-full`}
-            onClick={handleClickb}>
+            onClick={() => handleClickb({
+              pertanyaan: quiz[currentQuestion],
+              jawaban: quiz[currentQuestion].answer1.b.answer,
+            })}>
             {quiz[currentQuestion].answer1.b.answer}
-          </h1>
+          </button>
 
         </div>
         <div className="w-full h-fit flex justify-center font-bold text-gray-950">
@@ -167,7 +229,7 @@ export default function Question() {
               </button>
             </Link>
           ) : (
-            <button className="bg-white w-1/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" onClick={handleNextQuestion}>
+            <button style={{display : `${ showNext ? '' : 'none'}`}} className="bg-white w-1/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" onClick={handleNextQuestion}>
               Next
             </button>
           )}

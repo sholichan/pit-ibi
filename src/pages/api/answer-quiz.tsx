@@ -44,7 +44,7 @@ export default async function handler(
           },
         }
       )
-      if (!quizs) {
+      if (quizs.length == 0) {
         Quiz.create({
           data: {
             user: {

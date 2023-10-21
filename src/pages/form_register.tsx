@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import Layout from "../components/layout";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import Header from "@/components/header";
-import Footer from "@/components/footer";
 import { cities } from "@/components/cities";
-import { relative } from "path";
 
 export default function FromRegisterDump() {
   const [sugesData, setSugesData] = useState([]);
@@ -14,7 +11,6 @@ export default function FromRegisterDump() {
 
   async function fetchData(data: any) {
     try {
-      console.log(data);
       const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/getuser?kota=${data.kota}&name=${data.name}`);
       const result = await response.json();
       setSugesData(result);
@@ -36,7 +32,7 @@ export default function FromRegisterDump() {
     kota: Yup.string().required('Kota harus diisi'),
     name: Yup.string().required('Nama harus diisi'),
     whatsapp: Yup.string().required('Whatsapp harus diisi'),
-    email: Yup.string().required('Email harus diisi'),
+    email: Yup.string().email().required('Email harus diisi'),
     institusi: Yup.string().required('Institusi harus diisi'),
     nama_institusi: Yup.string().required('Nama Institusi harus diisi'),
   })
@@ -63,6 +59,8 @@ export default function FromRegisterDump() {
         .then((res) => res.json())
         .then((json) => {
           if (json.status === '200') {
+            const data = json.data.id;
+            localStorage.setItem('antrian', JSON.stringify(data));
             alert('Terima kasih telah mendaftar, silahkan lanjut ke halaman kuis');
             window.location.href = '/questions';
           } else {
@@ -75,6 +73,7 @@ export default function FromRegisterDump() {
         });
     }
   })
+
   useEffect(() => {
     if (formik.values.name === "") {
       return setSugesData([])
@@ -87,6 +86,7 @@ export default function FromRegisterDump() {
     }, 500);
     return () => clearTimeout(delayInputTimeoutId);
   }, [formik.values.name, 500])
+
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#e5e7eb" }}>
       <Header />
