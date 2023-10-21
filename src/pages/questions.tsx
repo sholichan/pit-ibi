@@ -24,42 +24,84 @@ type Quiz = {
 const quiz: Quiz = {
   1: {
     id:1,
-    question: '1. SGM dengan (…) formulasi unik gabungan Zat Besi (Iron) dan Vitamin C yang dapat bantu meningkatkan penyerapan zat besi 2X Lipat.',
+    question: 'SGM dengan (…) formulasi unik gabungan Zat Besi (Iron) dan Vitamin C yang dapat bantu meningkatkan penyerapan zat besi 2X Lipat.',
     answer1: {
       a: {
-        answer: 'a.	IronC',
+        answer: 'IronC',
         correct: true
       },
       b: {
-        answer: 'b.	Triple A',
+        answer: 'Triple A',
         correct: false
       }
     },
   },
   2: {
     id:2,
-    question: '2.	SGM dengan DHA dari Minyak Ikan (…) berkualitas, salah satu minyak ikan terbaik dengan Kandungan DHA 2x Lipat.',
+    question: 'SGM dengan DHA dari Minyak Ikan (…) berkualitas, salah satu minyak ikan terbaik dengan Kandungan DHA 2x Lipat.',
     answer1: {
       a: {
-        answer: 'a.	Tuna',
+        answer: 'Tuna',
         correct: true
       },
       b: {
-        answer: 'b.	Kod',
+        answer: 'Kod',
         correct: false
       }
     },
   },
   3: {
     id:3,
-    question: '3.	(….) merupakan kombinasi unik dari AA, DHA, LA dari Bebelove untuk perkembangan otak',
+    question: '(….) merupakan kombinasi unik dari AA, DHA, LA dari Bebelove untuk perkembangan otak',
     answer1: {
       a: {
-        answer: 'b.	Triple Bifi',
+        answer: 'Triple Bifi',
         correct: false
       },
       b: {
-        answer: 'b.	Triple A',
+        answer: 'Triple A',
+        correct: true
+      }
+    },
+  },
+  4: {
+    id:1,
+    question: '(….) merupakan prebiotik yang paling banyak diteliti dan terbukti klinis memperbaiki frekuensi BAB, melunakkan konsistensi feses dan menaikkan jumlah bakteri baik.',
+    answer1: {
+      a: {
+        answer: 'FOS:GOS',
+        correct: true
+      },
+      b: {
+        answer: 'L.Reuteri',
+        correct: false
+      }
+    },
+  },
+  5: {
+    id:2,
+    question: 'Jika ASI tidak dapat diberikan karena indikasi medis, Formula isolat protein soya merupakan nutrisi alternatif untuk indikasi gejala alergi (…)',
+    answer1: {
+      a: {
+        answer: 'Ringan-Sedang',
+        correct: true
+      },
+      b: {
+        answer: 'Berat',
+        correct: false
+      }
+    },
+  },
+  6: {
+    id:3,
+    question: 'SGM Bunda dengan Formulasi Tinggi Zat Besi, kandungan zat besi dalam 1 Gelas SGM Bunda setara dengan (…) Gelas Susu Sapi Segar',
+    answer1: {
+      a: {
+        answer: '9 Gelas',
+        correct: false
+      },
+      b: {
+        answer: '10 Gelas',
         correct: true
       }
     },
