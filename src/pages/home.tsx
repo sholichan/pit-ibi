@@ -44,21 +44,21 @@ export default function HomePoster() {
         position: 'relative',
         marginBottom: '30px'
       }} className="flex flex-wrap h-fit lg:h-4/5 w-full justify-center content-center lg:content-start">
-        <div style={{ marginTop: '-30px' }} className={isClicked ? " flex mb-5 flex-wrap w-full iphone12:w-full gap-6 h-fit lg:h-full lg:w-full justify-center lg:m-20 lg:justify-between" : 'invisible'}>
-          <video className={isClicked ? " border-indigo-800 rounded shadow-lg border-2 w-2/5 lg:w-auto lg:h-full" : 'hidden'} autoPlay muted loop={true} onClick={() => { setClicked(false), setClicked1(false) }}>
+        <div style={{ marginTop: '-30px' }} className={isClicked ? " flex mb-5 flex-wrap w-full iphone12:w-full gap-6 h-fit lg:h-full lg:w-full justify-center lg:m-5 lg:justify-between" : 'invisible'}>
+          <video className={isClicked ? " border-indigo-800 rounded shadow-lg border-2 w-2/5 lg:w-1/5 lg:h-full" : 'hidden'} autoPlay muted loop={true} onClick={() => { setClicked(false), setClicked1(false) }}>
             <source src="/video/CMPA1.mp4" type="video/mp4" />
           </video>
-          <video className={isClicked ? " border-indigo-800 rounded shadow-lg border-2 w-2/5 lg:w-auto lg:h-full" : 'hidden'} autoPlay muted loop={true} onClick={() => { setClicked(false), setClicked2(false) }}>
+          <video className={isClicked ? " border-indigo-800 rounded shadow-lg border-2 w-2/5 lg:w-1/5 lg:h-full" : 'hidden'} autoPlay muted loop={true} onClick={() => { setClicked(false), setClicked2(false) }}>
             <source src="/video/detailing_core_1.mp4" type="video/mp4" />
           </video>
-          <video className={isClicked ? " border-indigo-800 rounded shadow-lg border-2 w-2/5 lg:w-auto lg:h-full" : 'hidden'} autoPlay muted loop={true} onClick={() => { setClicked(false), setClicked3(false) }}>
+          <video className={isClicked ? " border-indigo-800 rounded shadow-lg border-2 w-2/5 lg:w-1/5 lg:h-full" : 'hidden'} autoPlay muted loop={true} onClick={() => { setClicked(false), setClicked3(false) }}>
             <source src="/video/detailing_core_3.mp4" type="video/mp4" />
           </video>
-          <video className={isClicked ? " border-indigo-800 rounded shadow-lg border-2 w-2/5 lg:w-auto lg:h-full" : 'hidden'} autoPlay muted loop={true} onClick={() => { setClicked(false), setClicked4(false) }}>
+          <video className={isClicked ? " border-indigo-800 rounded shadow-lg border-2 w-2/5 lg:w-1/5 lg:h-full" : 'hidden'} autoPlay muted loop={true} onClick={() => { setClicked(false), setClicked4(false) }}>
             <source src="/video/detailing_pbf_1.mp4" type="video/mp4" />
           </video>
         </div>
-        <Link className={isClicked ? "bg-indigo-800 text-gray-200 border-gray-200 border-2 w-2/3 lg:w-1/4 lg:mt-32 h-10 p-2 rounded-lg items-center flex justify-center" : 'hidden'} href="/qrcode">
+        <Link className={isClicked ? "bg-indigo-800 text-gray-200 border-gray-200 border-2 w-2/3 lg:w-1/4 lg:mt-0 h-10 p-2 rounded-lg items-center flex justify-center" : 'hidden'} href="/qrcode">
           <button >
             Quiz
           </button>
