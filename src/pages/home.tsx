@@ -1,9 +1,5 @@
-import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import Layout from "../components/layout"
-import HeaderHome from "@/components/header_home";
-import Footer from "@/components/footer";
 
 export default function HomePoster() {
   const [isClicked, setClicked] = useState<boolean>(true);
