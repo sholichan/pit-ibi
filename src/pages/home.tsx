@@ -40,7 +40,7 @@ export default function HomePoster() {
         position: 'relative',
         marginBottom: '30px'
       }} className="flex flex-wrap h-fit lg:h-4/5 w-full justify-center content-center lg:content-start">
-        <div style={{ marginTop: '-30px' }} className={isClicked ? " flex mb-5 flex-wrap w-full iphone12:w-full gap-6 h-fit lg:h-full lg:w-full justify-center lg:m-5 lg:justify-between" : 'invisible'}>
+        <div style={{ marginTop: '-30px' }} className={isClicked ? " flex mb-5 flex-wrap w-full iphone12:w-full gap-6 h-fit lg:h-full lg:w-full justify-center lg:m-5 lg:justify-between portrait" : 'invisible'}>
           <video className={isClicked ? " border-indigo-800 rounded shadow-lg border-2 w-2/5 lg:w-1/5 lg:h-full" : 'hidden'} autoPlay muted loop={true} onClick={() => { setClicked(false), setClicked1(false) }}>
             <source src="/video/CMPA1.mp4" type="video/mp4" />
           </video>
