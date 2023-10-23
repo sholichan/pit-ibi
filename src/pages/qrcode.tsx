@@ -16,7 +16,7 @@ export default function Quiz() {
         <div className="w-full justify-center flex h-fit p-2 mb-5 rounded-lg">
           <Link href={"/register"}>
             <Canvas
-              text={'PIT IBI QUIZ'}
+              text={process.env.NEXT_PUBLIC_HOST_URL + "/register"}
               options={{
                 errorCorrectionLevel: 'M',
                 margin: 1,
