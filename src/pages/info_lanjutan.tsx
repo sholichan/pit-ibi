@@ -51,7 +51,7 @@ export default function Info_Lanjutan() {
 
     <Layout>
       <div className='fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-40' style={{ display: `${isOpen ? '' : 'none'}` }} onClick={handleNext}>
-        <div className="flex w-full h-full  justify-center items-center">
+        <div className="flex w-full h-full  justify-center items-center p-4">
           <Image src={isSrc[indexArr]} alt="" className="lg:w-1/3" />
         </div>
       </div>
