@@ -17,6 +17,7 @@ export default function Info_Lanjutan() {
   const [isOpen, setOpen] = useState(false)
   const [isSrc, setSrc] = useState<StaticImageData[]>([])
   const [indexArr, setIndexArr] = useState(0)
+  const [isAnimated, setAnimated] = useState('animate-fade-up')
 
   const alergi = [alergi1, alergi2]
   const anemia = [anemia1, anemia2, anemia3]
@@ -29,6 +30,7 @@ export default function Info_Lanjutan() {
     } else {
       setOpen(false)
       setIndexArr(0)
+      setAnimated('animate-fade-right')
     }
   }
   const handleClick1 = () => {
@@ -50,9 +52,9 @@ export default function Info_Lanjutan() {
   return (
 
     <Layout>
-      <div className='fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-40' style={{ display: `${isOpen ? '' : 'none'}` }} onClick={handleNext}>
-        <div className="flex w-full h-full  justify-center items-center p-4">
-          <Image src={isSrc[indexArr]} alt="" className="lg:w-1/3" />
+      <div className={`fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-40 `}  style={{ display: `${isOpen ? '' : 'none'}` }} onClick={handleNext}>
+        <div className="flex w-full h-full  justify-center items-center p-4 focus:animate-fade-right">
+          <Image src={isSrc[indexArr]} alt="" className="lg:w-1/4" />
         </div>
       </div>
       <div className="bg-indigo-800 flex flex-wrap w-full p-2 justify-center content-start h-full py-14">
