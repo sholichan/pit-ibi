@@ -27,16 +27,16 @@ export default function HomePoster() {
         zIndex: "100",
       }} className={isClicked ? 'invisible' : " flex flex-wrap w-full justify-center content-start"}>
         <video className={isClicked1 ? "hidden" : 'border-indigo-800 border-4 p1 w-11/12 h-auto iphone12:w-full lg:h-auto lg:w-1/4'} autoPlay muted loop={true} width="400" height="200" onClick={() => { setClicked(true), setClicked1(true) }}>
-          <source src="/video/CMPA2.mp4" type="video/mp4" />
+          <source src="/video/CMPA1.mp4" type="video/mp4" />
         </video>
         <video className={isClicked2 ? "hidden" : 'border-indigo-800 border-4 p1 w-11/12 h-auto iphone12:w-full lg:h-auto lg:w-1/4'} autoPlay muted loop={true} width="400" height="200" onClick={() => { setClicked(true), setClicked2(true) }}>
-          <source src="/video/detailing_core_2.mp4" type="video/mp4" />
+          <source src="/video/detailing_core_1.mp4" type="video/mp4" />
         </video>
         <video className={isClicked3 ? "hidden" : 'border-indigo-800 border-4 p1 w-11/12 h-auto iphone12:w-full lg:h-auto lg:w-1/4'} autoPlay muted loop={true} width="400" height="200" onClick={() => { setClicked(true), setClicked3(true) }}>
-          <source src="/video/detailing_core_3.mp4" type="video/mp4" />
+          <source src="/video/detailing_core_1.mp4" type="video/mp4" />
         </video>
         <video className={isClicked4 ? "hidden" : 'border-indigo-800 border-4 p1 w-11/12 h-auto iphone12:w-full lg:h-auto lg:w-1/4'} autoPlay muted loop={true} width="400" height="200" onClick={() => { setClicked(true), setClicked4(true) }}>
-          <source src="/video/detailing_pbf_2.mp4" type="video/mp4" />
+          <source src="/video/detailing_pbf_1.mp4" type="video/mp4" />
         </video>
       </div>
       <div style={{

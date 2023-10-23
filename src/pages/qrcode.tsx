@@ -36,7 +36,7 @@ export default function Quiz() {
               Home
             </button>
           </Link>
-          <Link className="bg-gray-200 font-medium text-gray-950 w-2/4 h-10 p-2 ml-1 rounded-lg items-center flex justify-center" href="">
+          <Link className="bg-gray-200 font-medium text-gray-950 w-2/4 h-10 p-2 ml-1 rounded-lg items-center flex justify-center" href="/info_lanjutan">
             <button >
               Info Lanjutan
             </button>
