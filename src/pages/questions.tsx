@@ -214,7 +214,7 @@ export default function Question() {
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          Selamat anda berhak atas 1 buah goodiebag persembahan Danone nutricia sarihusada
+                        selamat anda berhak atas 1 buah goodiebag persembahan Danone nutricia sarihusada. silahkan tunjukan ke panitia utk pengambilan gimmick.
                         </p>
                       </div>
                     </div>

@@ -1,67 +1,83 @@
 import Link from "next/link"
+import Layout from "../components/layout"
+import Image, { StaticImageData } from "next/image"
 import { useState } from "react"
+import alergi1 from '../../public/img/alergi1.jpg'
+import anemia1 from '../../public/img/anemia1.jpg'
+import kehamilan1 from '../../public/img/kehamilan1.jpg'
+import pencernaan1 from '../../public/img/pencernaan1.jpg'
+import Footer from "@/components/footer"
+import Header_home from "@/components/header_home"
 
-export default function HomePoster() {
-  const [isClicked, setClicked] = useState<boolean>(true);
-  const [isClicked1, setClicked1] = useState<boolean>(true);
-  const [isClicked2, setClicked2] = useState<boolean>(true);
-  const [isClicked3, setClicked3] = useState<boolean>(true);
-  const [isClicked4, setClicked4] = useState<boolean>(true);
+export default function Info_Lanjutan() {
+  const [isOpen, setOpen] = useState(false)
+  const [isSrc, setSrc] = useState<StaticImageData>(alergi1)
 
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+  const handleClick1 = () => {
+    setSrc(pencernaan1)
+    setOpen(true)
+  }
+  const handleClick2 = () => {
+    setSrc(alergi1)
+    setOpen(true)
+  }
+  const handleClick3 = () => {
+    setSrc(anemia1)
+    setOpen(true)
+  }
+  const handleClick4 = () => {
+    setSrc(kehamilan1)
+    setOpen(true)
+  }
   return (
-    <div style={{ backgroundColor: "#e5e7eb", minHeight: '100vh', }}>
-      <div className="z-0 w-full rounded-b-3xl bg-indigo-800 px-2 py-10 justify-between">
-        <div className="flex flex-wrap w-full font-medium text-center text-2xl text-gray-200 justify-center pb-5 lg:pb-10">
-          <h1 className="w-full">
-            SELAMAT DATANG
-          </h1>
+
+    <Layout>
+      <Header_home />
+      <Footer />
+      <div className={`fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-40 `} style={{ display: `${isOpen ? '' : 'none'}` }} onClick={handleClose}>
+        <div className="flex w-full h-full justify-center items-center p-4">
+          <Image src={isSrc} alt="" className="lg:w-1/4" />
         </div>
       </div>
-      <div style={{
-        position: 'absolute',
-        top: '30px',
-        zIndex: "100",
-      }} className={isClicked ? 'invisible' : " flex flex-wrap w-full justify-center content-start"}>
-        <video className={isClicked1 ? "hidden" : 'border-indigo-800 border-4 p1 w-11/12 h-auto iphone12:w-full lg:h-auto lg:w-1/4'} autoPlay muted loop={true} width="400" height="200" onClick={() => { setClicked(true), setClicked1(true) }}>
-          <source src="/video/CMPA1.mp4" type="video/mp4" />
-        </video>
-        <video className={isClicked2 ? "hidden" : 'border-indigo-800 border-4 p1 w-11/12 h-auto iphone12:w-full lg:h-auto lg:w-1/4'} autoPlay muted loop={true} width="400" height="200" onClick={() => { setClicked(true), setClicked2(true) }}>
-          <source src="/video/detailing_core_1.mp4" type="video/mp4" />
-        </video>
-        <video className={isClicked3 ? "hidden" : 'border-indigo-800 border-4 p1 w-11/12 h-auto iphone12:w-full lg:h-auto lg:w-1/4'} autoPlay muted loop={true} width="400" height="200" onClick={() => { setClicked(true), setClicked3(true) }}>
-          <source src="/video/detailing_core_1.mp4" type="video/mp4" />
-        </video>
-        <video className={isClicked4 ? "hidden" : 'border-indigo-800 border-4 p1 w-11/12 h-auto iphone12:w-full lg:h-auto lg:w-1/4'} autoPlay muted loop={true} width="400" height="200" onClick={() => { setClicked(true), setClicked4(true) }}>
-          <source src="/video/detailing_pbf_1.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div style={{
-        zIndex: "100",
-        position: 'relative',
-        marginBottom: '30px'
-      }} className="flex flex-wrap h-fit lg:h-4/5 w-full justify-center content-center lg:content-start">
-        <div style={{ marginTop: '-30px' }} className={isClicked ? " flex mb-5 flex-wrap w-full iphone12:w-full gap-6 h-fit lg:h-full lg:w-full justify-center lg:m-5 lg:justify-between portrait" : 'invisible'}>
-          <video className={isClicked ? " border-indigo-800 rounded shadow-lg border-2 w-2/5 lg:w-1/5 lg:h-full" : 'hidden'} autoPlay muted loop={true} onClick={() => { setClicked(false), setClicked1(false) }}>
-            <source src="/video/CMPA1.mp4" type="video/mp4" />
-          </video>
-          <video className={isClicked ? " border-indigo-800 rounded shadow-lg border-2 w-2/5 lg:w-1/5 lg:h-full" : 'hidden'} autoPlay muted loop={true} onClick={() => { setClicked(false), setClicked2(false) }}>
-            <source src="/video/detailing_core_1.mp4" type="video/mp4" />
-          </video>
-          <video className={isClicked ? " border-indigo-800 rounded shadow-lg border-2 w-2/5 lg:w-1/5 lg:h-full" : 'hidden'} autoPlay muted loop={true} onClick={() => { setClicked(false), setClicked3(false) }}>
-            <source src="/video/detailing_core_3.mp4" type="video/mp4" />
-          </video>
-          <video className={isClicked ? " border-indigo-800 rounded shadow-lg border-2 w-2/5 lg:w-1/5 lg:h-full" : 'hidden'} autoPlay muted loop={true} onClick={() => { setClicked(false), setClicked4(false) }}>
-            <source src="/video/detailing_pbf_1.mp4" type="video/mp4" />
-          </video>
+      <div className="absolute inset-0 top-20">
+        <div className="flex flex-wrap w-full p-2 justify-center content-start h-full ">
+          <div className="w-auto h-fit flex flex-wrap p-2 justify-center content-start iphone12:gap-8 gap-5">
+            <div className="w-full justify-center lg:justify-between flex flex-wrap h-fit p-2 lg:px-12 rounded-lg iphone12:gap-8 gap-5">
+              <div className="hover:cursor-pointer hover:animate-shake border-indigo-800 border-4 font-medium text-gray-950 lg:w-2/12 w-2/5 h-auto rounded-lg items-center flex justify-center" onClick={handleClick1}>
+                <div className="flex w-full h-full  justify-center items-center">
+                  <Image src={pencernaan1} alt="" />
+                </div>
+              </div>
+              <div className="hover:cursor-pointer hover:animate-shake border-indigo-800 border-4 font-medium text-gray-950 lg:w-2/12 w-2/5 h-auto rounded-lg items-center flex justify-center" onClick={handleClick2}>
+                <div className="flex w-full h-full  justify-center items-center">
+                  <Image src={alergi1} alt="" />
+                </div>
+              </div>
+              <div className="hover:cursor-pointer hover:animate-shake border-indigo-800 border-4 font-medium text-gray-950 lg:w-2/12 w-2/5 h-auto rounded-lg items-center flex justify-center" onClick={handleClick3}>
+                <div className="flex w-full h-full  justify-center items-center">
+                  <Image src={anemia1} alt="" />
+                </div>
+              </div>
+              <div className="hover:cursor-pointer hover:animate-shake border-indigo-800 border-4 font-medium text-gray-950 lg:w-2/12 w-2/5 h-auto rounded-lg items-center flex justify-center" onClick={handleClick4}>
+                <div className="flex w-full h-full  justify-center items-center">
+                  <Image src={kehamilan1} alt="" />
+                </div>
+              </div>
+            </div>
+
+            <Link className="bg-indigo-800 text-gray-200 border-gray-200 border-2 w-2/3 lg:w-1/4 lg:mt-0 h-10 p-2 rounded-lg items-center flex justify-center" href="/qrcode">
+              <button >
+                Quiz
+              </button>
+            </Link>
+          </div>
         </div>
-        <Link className={isClicked ? "bg-indigo-800 text-gray-200 border-gray-200 border-2 w-2/3 lg:w-1/4 lg:mt-0 h-10 p-2 rounded-lg items-center flex justify-center" : 'hidden'} href="/qrcode">
-          <button >
-            Quiz
-          </button>
-        </Link>
       </div>
-      <div className="fixed w-full h-12  bg-indigo-800 bottom-0 left-0 rounded-t-3xl"></div>
-    </div>
+    </Layout>
   )
 }
 
