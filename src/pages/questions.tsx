@@ -1,6 +1,12 @@
 import Link from "next/link"
 import Layout from "../components/layout"
 import { useState } from "react"
+import Image, { StaticImageData } from "next/image"
+import right from '../../public/icon/right.svg'
+import checked from '../../public/icon/checked.svg'
+import unchecked from '../../public/icon/unchecked.svg'
+
+
 
 type QuizItem = {
   id: number,
@@ -115,6 +121,7 @@ export default function Question() {
   const [bgAnswer, setBgAnswer] = useState('bg-indigo-800');
   const [showNext, setShowNext] = useState(false);
   const [isOpen, setIsOpen] = useState(false)
+  const [isIcon, setIcon] = useState(true)
 
   const handleNextQuestion = () => {
     if (currentQuestion < Object.keys(quiz).length) {
@@ -141,6 +148,7 @@ export default function Question() {
   }
   const handleClicka = (data: any) => {
     setShowNext(true)
+    setIcon(data.pertanyaan.answer1.a.correct)
     const quiz = {
       "pertanyaan": data.pertanyaan.question,
       "jawaban": [
@@ -164,12 +172,13 @@ export default function Question() {
     setAnswera(data.pertanyaan.answer1.a.correct),
       setAnswerb(data.pertanyaan.answer1.b.correct)
     if (data.pertanyaan.answer1.a.correct == isAnswera) {
-      setBgAnswer('bg-red-800')
+      setBgAnswer('bg-red-500')
     }
     postAnswer(postData)
   }
   const handleClickb = (data: any) => {
     setShowNext(true)
+    setIcon(data.pertanyaan.answer1.b.correct)
     const quiz = {
       "pertanyaan": data.pertanyaan.question,
       "jawaban": [
@@ -193,7 +202,7 @@ export default function Question() {
     setAnswera(data.pertanyaan.answer1.a.correct),
       setAnswerb(data.pertanyaan.answer1.b.correct)
     if (data.pertanyaan.answer1.b.correct == isAnswera) {
-      setBgAnswer('bg-red-800')
+      setBgAnswer('bg-red-500')
     }
     postAnswer(postData)
   }
@@ -214,7 +223,7 @@ export default function Question() {
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                        selamat anda berhak atas 1 buah goodiebag persembahan Danone nutricia sarihusada. silahkan tunjukan ke panitia utk pengambilan gimmick.
+                          selamat anda berhak atas 1 buah goodiebag persembahan Danone nutricia sarihusada. silahkan tunjukan ke panitia utk pengambilan gimmick.
                         </p>
                       </div>
                     </div>
@@ -231,13 +240,13 @@ export default function Question() {
         </div>
       </div>
 
-      <div className="bg-indigo-800 flex flex-wrap space-y-5 w-full justify-center content-start h-full py-14">
+      <div className="bg-indigo-800 flex flex-wrap space-y-5 w-full justify-center content-start h-full py-14 gap-0.5">
         <h1 className="font-extrabold  text-gray-200 w-full text-xl text-center rounded-lg">{`PERTANYAAN ${currentQuestion}`}</h1>
         <div className="lg:w-1/3 w-72 py-10 h-auto flex flex-wrap justify-center text-indigo-800 text-center bg bg-white p-5 rounded-lg">
-          <h1 className="font-extrabold text-base lg:text-base mb-10">{quiz[currentQuestion].question}</h1>
+          <h1 className="font-extrabold text-sm iphone12:text-lg lg:text-sm mb-10 lg:mb-5">{quiz[currentQuestion].question}</h1>
 
-          <button disabled={showNext} className={isAnswera ? `font-medium hover:cursor-pointer text-white bg-green-500 w-2/3 text-center p-5 mb-10 rounded-full` :
-            `font-medium hover:cursor-pointer text-white ${bgAnswer} w-2/3 text-center p-5 mb-10 rounded-full`}
+          <button disabled={showNext} className={isAnswera ? `font-medium hover:cursor-pointer text-white bg-green-500 w-2/3 text-center p-5 mb-10 lg:mb-5 rounded-full` :
+            `font-medium hover:cursor-pointer text-white ${bgAnswer} w-2/3 text-center p-5 mb-10 lg:mb-5 rounded-full`}
             onClick={() => handleClicka({
               pertanyaan: quiz[currentQuestion],
               jawaban: quiz[currentQuestion].answer1.a.answer,
@@ -255,15 +264,19 @@ export default function Question() {
           </button>
 
         </div>
+        <div className={showNext ? "w-full h-fit flex justify-center " : 'hidden'}>
+          <Image className='w-10 h-10' src={isIcon ? checked : unchecked} alt={""} />
+        </div>
+
         <div className="w-full h-fit flex justify-center font-bold text-gray-950">
           {isDone ? (
-            <Link className="bg-white text-green-800 w-1/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" href="/">
+            <Link className="bg-white text-green-800 w-1/3 h-10 rounded-lg items-center flex justify-center" href="/">
               <button >
                 Home
               </button>
             </Link>
           ) : (
-            <button style={{ display: `${showNext ? '' : 'none'}` }} className="bg-white w-1/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" onClick={handleNextQuestion}>
+            <button style={{ display: `${showNext ? '' : 'none'}` }} className="bg-white w-1/3 h-10 rounded-lg items-center flex justify-center" onClick={handleNextQuestion}>
               Next
             </button>
           )}

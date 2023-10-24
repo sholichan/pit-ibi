@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import * as Yup from 'yup';
 import Header from "@/components/header";
 import { cities } from "@/components/cities";
+import { cities2 } from "@/components/cities2";
+import Select from "react-select";
 
 export default function FromRegisterDump() {
   const [sugesData, setSugesData] = useState([]);
@@ -99,17 +101,18 @@ export default function FromRegisterDump() {
             <form onSubmit={formik.handleSubmit} className="text-gray-950 p-3">
               <div className="mb-2">
                 <label className="font-bold">Asal Kota/Kabupaten</label>
-                <select
-                  className="w-full border border-gray-300 rounded-md p-2 outline-none focus:ring-2 focus:ring-indigo-800"
-                  name="kota"
-                  onChange={formik.handleChange}
+                <Select
+                  options={cities2}
+                  placeholder='Pilih Kota'
+                  onChange={
+                    (selectedOption) => {
+                      console.log(selectedOption);
+                      formik.setFieldValue('kota', selectedOption?.value)
+                    }
+                  }
                   onBlur={formik.handleBlur}
-                  value={formik.values.kota}
-                >
-                  {cities.map((city, index) => (
-                    <option key={index} value={city}>{city}</option>
-                  ))}
-                </select>
+                  isSearchable
+                />
                 {formik.touched.kota && formik.errors.kota ? (
                   <div className="text-red-500 text-sm">{formik.errors.kota}</div>
                 ) : null}
