@@ -221,7 +221,7 @@ export default function Question() {
                   </div>
                 </div>
                 <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                  <Link href="/home" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-800 text-base font-medium text-white hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+                  <Link href="/" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-800 text-base font-medium text-white hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
                     Home
                   </Link>
                 </div>
@@ -257,7 +257,7 @@ export default function Question() {
         </div>
         <div className="w-full h-fit flex justify-center font-bold text-gray-950">
           {isDone ? (
-            <Link className="bg-white text-green-800 w-1/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" href="/home">
+            <Link className="bg-white text-green-800 w-1/3 h-10 p-2 m-2 rounded-lg items-center flex justify-center" href="/">
               <button >
                 Home
               </button>
