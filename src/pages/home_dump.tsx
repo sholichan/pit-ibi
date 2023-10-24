@@ -47,7 +47,7 @@ export default function Info_Lanjutan() {
       <div className="absolute inset-0 top-20">
         <div className="flex flex-wrap w-full p-2 justify-center content-start h-full ">
           <div className="w-auto h-fit flex flex-wrap p-2 justify-center content-start iphone12:gap-8 gap-5">
-            <div className="w-full justify-center flex flex-wrap h-fit p-2 rounded-lg iphone12:gap-8 gap-5">
+            <div className="w-full justify-center lg:justify-between flex flex-wrap h-fit p-2 lg:px-12 rounded-lg iphone12:gap-8 gap-5">
               <div className="hover:cursor-pointer border-indigo-800 border-4 font-medium text-gray-950 lg:w-2/12 w-2/5 h-auto rounded-lg items-center flex justify-center" onClick={handleClick1}>
                 <div className="flex w-full h-full  justify-center items-center">
                   <Image src={pencernaan1} alt="" />
@@ -70,13 +70,11 @@ export default function Info_Lanjutan() {
               </div>
             </div>
 
-            <div className="w-72 h-fit flex justify-center">
-              <Link className={isClicked ? "bg-indigo-800 text-gray-200 border-gray-200 border-2 w-2/3 lg:w-1/4 lg:mt-0 h-10 p-2 rounded-lg items-center flex justify-center" : 'hidden'} href="/qrcode">
-                <button >
-                  Quiz
-                </button>
-              </Link>
-            </div>
+            <Link className="bg-indigo-800 text-gray-200 border-gray-200 border-2 w-2/3 lg:w-1/4 lg:mt-0 h-10 p-2 rounded-lg items-center flex justify-center" href="/qrcode">
+              <button >
+                Quiz
+              </button>
+            </Link>
           </div>
         </div>
       </div>
