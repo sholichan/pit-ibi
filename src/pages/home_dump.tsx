@@ -12,7 +12,6 @@ import Header_home from "@/components/header_home"
 export default function Info_Lanjutan() {
   const [isOpen, setOpen] = useState(false)
   const [isSrc, setSrc] = useState<StaticImageData>(alergi1)
-  const [isClicked, setClicked] = useState<boolean>(true);
 
 
   const handleClose = () => {
