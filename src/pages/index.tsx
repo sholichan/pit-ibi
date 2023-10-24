@@ -1,4 +1,4 @@
-import HomePoster from "./home"
+import HomePoster from "./home_dump"
 
 export default function Home() {
   return (
