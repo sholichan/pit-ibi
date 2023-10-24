@@ -5,7 +5,7 @@ import { useState } from "react"
 import alergi1 from '../../public/img/alergi1.jpg'
 import anemia1 from '../../public/img/anemia1.jpg'
 import kehamilan1 from '../../public/img/kehamilan1.jpg'
-import pencernaan1 from '../../public/img/pencernaan1.png'
+import pencernaan1 from '../../public/img/pencernaan1.jpg'
 import Footer from "@/components/footer"
 import Header_home from "@/components/header_home"
 

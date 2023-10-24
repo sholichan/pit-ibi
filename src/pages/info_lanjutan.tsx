@@ -9,9 +9,9 @@ import anemia2 from '../../public/img/anemia2.jpg'
 import anemia3 from '../../public/img/anemia3.jpg'
 import kehamilan1 from '../../public/img/kehamilan1.jpg'
 import kehamilan2 from '../../public/img/kehamilan2.jpg'
-import pencernaan1 from '../../public/img/pencernaan1.png'
-import pencernaan2 from '../../public/img/pencernaan2.png'
-import pencernaan3 from '../../public/img/pencernaan3.png'
+import pencernaan1 from '../../public/img/pencernaan1.jpg'
+import pencernaan2 from '../../public/img/pencernaan2.jpg'
+import pencernaan3 from '../../public/img/pencernaan3.jpg'
 
 export default function Info_Lanjutan() {
   const [isOpen, setOpen] = useState(false)
