@@ -2,35 +2,35 @@ import Link from "next/link"
 import Layout from "../components/layout"
 import Image, { StaticImageData } from "next/image"
 import { useState } from "react"
-import alergi1 from '../../public/img/alergi1.jpg'
-import anemia1 from '../../public/img/anemia1.jpg'
-import kehamilan1 from '../../public/img/kehamilan1.jpg'
-import pencernaan1 from '../../public/img/pencernaan1.jpg'
+import alergi from '../../public/img/alergi2.jpg'
+import anemia from '../../public/img/anemia3.jpg'
+import kehamilan from '../../public/img/kehamilan1.jpg'
+import pencernaan from '../../public/img/pencernaan3.jpg'
 import Footer from "@/components/footer"
 import Header_home from "@/components/header_home"
 
 export default function Info_Lanjutan() {
   const [isOpen, setOpen] = useState(false)
-  const [isSrc, setSrc] = useState<StaticImageData>(alergi1)
+  const [isSrc, setSrc] = useState<StaticImageData>(alergi)
 
 
   const handleClose = () => {
     setOpen(false)
   }
   const handleClick1 = () => {
-    setSrc(pencernaan1)
+    setSrc(kehamilan)
     setOpen(true)
   }
   const handleClick2 = () => {
-    setSrc(alergi1)
+    setSrc(anemia)
     setOpen(true)
   }
   const handleClick3 = () => {
-    setSrc(anemia1)
+    setSrc(pencernaan)
     setOpen(true)
   }
   const handleClick4 = () => {
-    setSrc(kehamilan1)
+    setSrc(alergi)
     setOpen(true)
   }
   return (
@@ -49,22 +49,22 @@ export default function Info_Lanjutan() {
             <div className="w-full justify-center lg:justify-between flex flex-wrap h-fit p-2 lg:px-12 rounded-lg iphone12:gap-8 gap-5">
               <div className="hover:cursor-pointer hover:animate-shake border-indigo-800 border-4 font-medium text-gray-950 lg:w-2/12 w-2/5 h-auto rounded-lg items-center flex justify-center" onClick={handleClick1}>
                 <div className="flex w-full h-full  justify-center items-center">
-                  <Image src={pencernaan1} alt="" />
+                  <Image src={kehamilan} alt="" />
                 </div>
               </div>
               <div className="hover:cursor-pointer hover:animate-shake border-indigo-800 border-4 font-medium text-gray-950 lg:w-2/12 w-2/5 h-auto rounded-lg items-center flex justify-center" onClick={handleClick2}>
                 <div className="flex w-full h-full  justify-center items-center">
-                  <Image src={alergi1} alt="" />
+                  <Image src={anemia} alt="" />
                 </div>
               </div>
               <div className="hover:cursor-pointer hover:animate-shake border-indigo-800 border-4 font-medium text-gray-950 lg:w-2/12 w-2/5 h-auto rounded-lg items-center flex justify-center" onClick={handleClick3}>
                 <div className="flex w-full h-full  justify-center items-center">
-                  <Image src={anemia1} alt="" />
+                  <Image src={pencernaan} alt="" />
                 </div>
               </div>
               <div className="hover:cursor-pointer hover:animate-shake border-indigo-800 border-4 font-medium text-gray-950 lg:w-2/12 w-2/5 h-auto rounded-lg items-center flex justify-center" onClick={handleClick4}>
                 <div className="flex w-full h-full  justify-center items-center">
-                  <Image src={kehamilan1} alt="" />
+                  <Image src={alergi} alt="" />
                 </div>
               </div>
             </div>

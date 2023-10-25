@@ -246,6 +246,36 @@ export default function FromRegisterDump() {
                   <div className="text-red-500 text-sm">{formik.errors.nama_institusi}</div>
                 ) : null}
               </div>
+              <div className="mb-5 flex flex-wrap border border-indigo-800 p-3 rounded-lg gap-3">
+                <label htmlFor="daftar" className=" w-full text-sm font-medium text-gray-900">
+                  Apakah anda sudah mendaftar di Aplikasi e-Nutri?
+                </label>
+                {/* checkbox daftar */}
+                <div className="flex items-top w-full">
+                  <input
+                    id="daftar"
+                    type="radio"
+                    name="daftar"
+                    onChange={() => setIsReadySubmit(!isReadySubmit)}
+                    className="w-4 h-4 checked:accent-indigo-800 ring-indigo-800"
+                  />
+                  <label htmlFor="daftar" className="ml-2 text-sm font-medium text-gray-900">
+                    Sudah
+                  </label>
+                </div>
+                <div className="flex items-top w-full">
+                  <input
+                    id="daftar"
+                    type="radio"
+                    name="daftar"
+                    onChange={() => setIsReadySubmit(!isReadySubmit)}
+                    className="w-4 h-4 checked:accent-indigo-800 ring-indigo-800"
+                  />
+                  <label htmlFor="daftar" className="ml-2 text-sm font-medium text-gray-900">
+                    Belum
+                  </label>
+                </div>
+              </div>
               <div className="mb-5">
                 {/* checkbox setuju */}
                 <div className="flex items-top">
