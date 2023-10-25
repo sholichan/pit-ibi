@@ -9,6 +9,7 @@ type Data = {
     whatsapp: string | null,
     institusi: string | null,
     nama_institusi?: string | null,
+    e_nutri? : number | null,
   }
   message: string,
   status: string
@@ -25,8 +26,8 @@ export default async function handler(
     }
     res.status(405).json(error);
   } else {
-    const { name, kota, email, whatsapp, institusi, nama_institusi, } = req.body;
-    if (!name || !kota || !email || !whatsapp || !institusi || !nama_institusi) {
+    const { name, kota, email, whatsapp, institusi, nama_institusi, e_nutri } = req.body;
+    if (!name || !kota || !email || !whatsapp || !institusi || !nama_institusi || !e_nutri) {
       const error: Data = {
         status: '400',
         message: 'Bad Request',
@@ -55,6 +56,7 @@ export default async function handler(
             institusi: institusi,
             nama_institusi: nama_institusi,
             attend: 1,
+            e_nutri: parseInt(e_nutri),
           },
         })
         const response: Data = {
@@ -73,6 +75,7 @@ export default async function handler(
             institusi: institusi,
             nama_institusi: nama_institusi,
             attend: 1,
+            e_nutri: parseInt(e_nutri),
           },
         })
           .then((data) => {

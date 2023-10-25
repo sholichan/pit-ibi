@@ -20,6 +20,7 @@ model User {
   nama_institusi  String?
   attend          Int        @default(0)
   user_quiz       QuizUserAnswer[]
+  e_nutri         Int        @default(0)
 }
 
 model QuizUserAnswer {

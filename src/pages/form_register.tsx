@@ -37,6 +37,7 @@ export default function FromRegisterDump() {
     email: Yup.string().email().required('Email harus diisi'),
     institusi: Yup.string().required('Institusi harus diisi'),
     nama_institusi: Yup.string().required('Nama Institusi harus diisi'),
+    e_nutri: Yup.string().required('Pilihan harus diisi'),
   })
 
   const formik = useFormik({
@@ -48,6 +49,7 @@ export default function FromRegisterDump() {
       email: '',
       institusi: '',
       nama_institusi: '',
+      e_nutri: '',
     },
     onSubmit: values => {
       if (!isReadySubmit) return alert('Anda harus menyetujui persyaratan')
@@ -253,25 +255,29 @@ export default function FromRegisterDump() {
                 {/* checkbox daftar */}
                 <div className="flex items-top w-full">
                   <input
-                    id="daftar"
+                    id="sudah"
                     type="radio"
-                    name="daftar"
-                    onChange={() => setIsReadySubmit(!isReadySubmit)}
+                    name="e_nutri"
+                    value={1}
+                    checked={formik.values.e_nutri == '1'}
+                    onChange={formik.handleChange}
                     className="w-4 h-4 checked:accent-indigo-800 ring-indigo-800"
                   />
-                  <label htmlFor="daftar" className="ml-2 text-sm font-medium text-gray-900">
+                  <label htmlFor="sudah" className="ml-2 text-sm font-medium text-gray-900">
                     Sudah
                   </label>
                 </div>
                 <div className="flex items-top w-full">
                   <input
-                    id="daftar"
+                    id="belum"
                     type="radio"
-                    name="daftar"
-                    onChange={() => setIsReadySubmit(!isReadySubmit)}
+                    name="e_nutri"
+                    value={0}
+                    checked={formik.values.e_nutri == '0'}
+                    onChange={formik.handleChange}
                     className="w-4 h-4 checked:accent-indigo-800 ring-indigo-800"
                   />
-                  <label htmlFor="daftar" className="ml-2 text-sm font-medium text-gray-900">
+                  <label htmlFor="belum" className="ml-2 text-sm font-medium text-gray-900">
                     Belum
                   </label>
                 </div>
