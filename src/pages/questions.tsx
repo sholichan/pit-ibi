@@ -132,7 +132,7 @@ export default function Question() {
       setBgAnswer('bg-indigo-800')
     } else {
       setIsOpen(true)
-      setDone(true)
+      setShowNext(!showNext)
     }
   }
   const postAnswer = async (data: any) => {
@@ -213,6 +213,7 @@ export default function Question() {
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 
           <div className="fixed inset-0 transition-opacity" aria-hidden="true" onClick={() => {
+            setDone(true)
             setIsOpen(false)
           }}>
             <div className="absolute inset-0 flex align-items-center" style={{ background: '#000000ba' }}>
@@ -240,7 +241,7 @@ export default function Question() {
         <div className="lg:w-1/3 w-72 py-10 h-auto flex flex-wrap justify-center text-indigo-800 text-center bg bg-white p-5 rounded-lg">
           <h1 className="font-extrabold text-sm iphone12:text-lg lg:text-sm mb-10 lg:mb-5">{quiz[currentQuestion].question}</h1>
 
-          <button disabled={showNext} className={isAnswera ? `font-medium hover:cursor-pointer text-white bg-green-500 w-2/3 text-center p-5 mb-10 lg:mb-5 rounded-full` :
+          <button disabled={showNext || isDone} className={isAnswera ? `font-medium hover:cursor-pointer text-white bg-green-500 w-2/3 text-center p-5 mb-10 lg:mb-5 rounded-full` :
             `font-medium hover:cursor-pointer text-white ${bgAnswer} w-2/3 text-center p-5 mb-10 lg:mb-5 rounded-full`}
             onClick={() => handleClicka({
               pertanyaan: quiz[currentQuestion],
@@ -249,7 +250,7 @@ export default function Question() {
             {quiz[currentQuestion].answer1.a.answer}
           </button>
 
-          <button disabled={showNext} className={isAnswerb ? `font-medium hover:cursor-pointer text-white bg-green-500 w-2/3 text-center p-5 rounded-full` :
+          <button disabled={showNext || isDone} className={isAnswerb ? `font-medium hover:cursor-pointer text-white bg-green-500 w-2/3 text-center p-5 rounded-full` :
             `font-medium hover:cursor-pointer text-white ${bgAnswer} w-2/3 text-center p-5 rounded-full`}
             onClick={() => handleClickb({
               pertanyaan: quiz[currentQuestion],
@@ -264,17 +265,17 @@ export default function Question() {
         </div>
 
         <div className="w-full h-fit flex justify-center font-bold text-gray-950">
-          {isDone ? (
+          {/* {isDone ? (
             <Link className="bg-white text-green-800 w-1/3 h-10 rounded-lg items-center flex justify-center" href="/">
               <button >
                 Home
               </button>
             </Link>
-          ) : (
-            <button style={{ display: `${showNext ? '' : 'none'}` }} className="bg-white w-1/3 h-10 rounded-lg items-center flex justify-center" onClick={handleNextQuestion}>
-              Next
-            </button>
-          )}
+          ) : ( */}
+          <button style={{ display: `${showNext ? '' : 'none'}` }} className="bg-white w-1/3 h-10 rounded-lg items-center flex justify-center" onClick={handleNextQuestion}>
+            Next
+          </button>
+          {/* )} */}
 
         </div>
       </div>
