@@ -60,7 +60,7 @@ const quiz: Quiz = {
     question: '(….) merupakan kombinasi unik dari AA, DHA, LA dari Bebelove untuk perkembangan otak',
     answer1: {
       a: {
-        answer: 'Triple Bifi',
+        answer: 'Triple D',
         correct: false
       },
       b: {
