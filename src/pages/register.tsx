@@ -14,9 +14,12 @@ export default function Register() {
       <div className="absolute w-80 h-3/5 bg-white outline outline-1 outline-indigo-800 inset-1/2 -translate-x-1/2 -translate-y-1/4 rounded-2xl lg:w-11/12 p-2">
         <h1 className="font-medium rounded-lg text-center text-sm text-white lg:text-lg w-full h-fit bg-indigo-800 flex py-4 justify-center">Registration Booth Danone Indonesia</h1>
         <div className="flex flex-wrap content-start w-full h-2/3 overflow-auto bg-white outline outline-1 outline-indigo-800 rounded-lg lg:p-4">
-          <p className="text-gray-950 text-sm lg:text-base w-full h-fit flex  p-4 mx-0.5 justify-center">
-            Dengan mengikuti Acara dan/atau Program ilmiah sebagaimana disebutkan pada bagian awal, saya memberikan persetujuan kepada Danone SN Indonesia untuk memproses data pribadi saya dengan mengacu pada Kebijakan Kerahasiaan sesuai Pernyataan Privasi dan Syarat dan Ketentuan yang dapat diakses pada Form Registrasi Danone SN Indonesia, dan saya dapat menarik persetujuan saya kapan saja.
-          </p>
+          <div className="">
+            <p className="text-gray-950 text-sm lg:text-base w-full h-fit p-4 mx-0.5 justify-center">
+              Dengan mengikuti Acara dan/atau Program ilmiah sebagaimana disebutkan pada bagian awal, saya memberikan persetujuan kepada Danone SN Indonesia untuk memproses data pribadi saya dengan mengacu pada Kebijakan Kerahasiaan sesuai Pernyataan Privasi dan Syarat dan Ketentuan yang dapat diakses pada <span></span>
+              <a className="inline-flex items-center text-blue-600 hover:underline" href={"/pdf/termsCons.pdf"} target="_blank"> Form Registrasi Danone SN Indonesia</a>, dan saya dapat menarik persetujuan saya kapan saja.
+            </p>
+          </div>
           <div className="flex w-full h-fit mx-4 items-center">
             <div className="flex justify-center items-center" onClick={() => { setAgree(true) }}>
               <input
