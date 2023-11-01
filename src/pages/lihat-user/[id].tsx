@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-export default function detailUser() {
+export default function DetailUser() {
   const [quiz, setQuiz] = useState([]);
   const router = useRouter();
 
