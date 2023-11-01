@@ -28,7 +28,10 @@ const config: Config = {
     // },
   },
   variants: {},
-  plugins: [ require('tailwindcss-animated')],
+  plugins: [ 
+    require('tailwindcss-animated'),
+    require('flowbite/plugin'),
+  ],
 }
 
 export default config
