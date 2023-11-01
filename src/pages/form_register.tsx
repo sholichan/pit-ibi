@@ -34,11 +34,12 @@ export default function FromRegisterDump() {
     kota: Yup.string().required('Kota harus diisi'),
     name: Yup.string().required('Nama harus diisi'),
     whatsapp: Yup.string().required('Whatsapp harus diisi'),
-    email: Yup.string().email().required('Email harus diisi'),
+    // email: Yup.string().email().required('Email harus diisi'),
     institusi: Yup.string().required('Institusi harus diisi'),
     nama_institusi: Yup.string().required('Nama Institusi harus diisi'),
     e_nutri: Yup.string().required('Pilihan harus diisi'),
   })
+
 
   const formik = useFormik({
     validationSchema: validationSchema,
@@ -69,6 +70,7 @@ export default function FromRegisterDump() {
             window.location.href = '/questions';
           } else {
             alert('Terjadi kesalahan, silahkan coba lagi');
+            console.log(JSON.stringify(values));
           }
         })
         .catch((err) => {
@@ -105,7 +107,7 @@ export default function FromRegisterDump() {
                 <label className="font-bold">Asal Kota/Kabupaten</label>
                 <Select
                   options={cities2}
-                  placeholder='Pilih Kota'
+                  placeholder='Pilih Kota/Kabupaten'
                   onChange={
                     (selectedOption) => {
                       console.log(selectedOption);

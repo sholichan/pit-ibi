@@ -9,7 +9,7 @@ type Data = {
     whatsapp: string | null,
     institusi: string | null,
     nama_institusi?: string | null,
-    e_nutri? : number | null,
+    e_nutri?: number | null,
   }
   message: string,
   status: string
@@ -27,7 +27,7 @@ export default async function handler(
     res.status(405).json(error);
   } else {
     const { name, kota, email, whatsapp, institusi, nama_institusi, e_nutri } = req.body;
-    if (!name || !kota || !email || !whatsapp || !institusi || !nama_institusi || !e_nutri) {
+    if (!name || !kota || !whatsapp || !institusi || !nama_institusi || !e_nutri) {
       const error: Data = {
         status: '400',
         message: 'Bad Request',
@@ -43,7 +43,7 @@ export default async function handler(
           },
         }
       )
-      if (useremail) {
+      if (useremail?.email != "") {
         const update = await User.update({
           where: {
             email: email,
@@ -65,7 +65,39 @@ export default async function handler(
           message: 'OK',
         }
         res.status(200).json(response);
-      } else {
+      } else if (email == "") {
+        const randEmail = () => {
+          var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+          var charLength = chars.length;
+          var result = '';
+          for (var i = 0; i < 10; i++) {
+            result += chars.charAt(Math.floor(Math.random() * charLength));
+          }
+          return result;
+        }
+        User.create({
+          data: {
+            name: name,
+            kota: kota,
+            email: `${randEmail()}_rndm@mail.com`,
+            whatsapp: whatsapp,
+            institusi: institusi,
+            nama_institusi: nama_institusi,
+            attend: 1,
+            e_nutri: parseInt(e_nutri),
+          },
+        })
+          .then((data) => {
+            const response: Data = {
+              data: data,
+              status: '200',
+              message: 'OK',
+            }
+            res.status(200).json(response);
+          })
+
+      }
+      else {
         User.create({
           data: {
             name: name,
