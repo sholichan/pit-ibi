@@ -9,13 +9,13 @@ export default function LihatPengunjung() {
   const [lastPage, setLastPage] = useState(1);
   const [total, setTotal] = useState(0);
 
-  const fetcData = (postsearch: any = '') => {
+  const fetcData = (postsearch: any = "") => {
     fetch(
-      `${process.env.NEXT_PUBLIC_HOST_URL}/api/report/users?page=1&data=${postsearch}`
+      `${process.env.NEXT_PUBLIC_HOST_URL}/api/report/users?page=${page}&data=${postsearch}`
     )
       .then((res) => res.json())
       .then((response) => {
-        setData(response.data)
+        setData(response.data);
         setPage(response.current_page);
         setLastPage(response.last_page);
         setTotal(response.total);
@@ -27,11 +27,8 @@ export default function LihatPengunjung() {
   }, []);
 
   useEffect(() => {
-    const delayInputTimeoutId = setTimeout(() => {
-      fetcData(search);
-    }, 500);
-    return () => clearTimeout(delayInputTimeoutId);
-  }, [page, 500]);
+    fetcData(search);
+  }, [page]);
 
   return (
     <div className="p-10 bg-white min-h-screen">
@@ -42,7 +39,7 @@ export default function LihatPengunjung() {
           <input
             className="form-input w-1/6 p-2 rounded-left-md border-2 border-gray-200 border-r-0 outline-none focus:border-blue-500 text-gray-800"
             placeholder="Cari Pengunjung"
-            onChange={(e) => setSearch(e.target.value)} 
+            onChange={(e) => setSearch(e.target.value)}
           />
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
