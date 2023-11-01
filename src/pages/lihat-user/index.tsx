@@ -4,32 +4,56 @@ import { useRouter } from "next/router";
 export default function LihatPengunjung() {
   const [data, setData] = useState([]);
   const router = useRouter();
-
-  useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/report/users?page=1`)
-      .then((res) => res.json())
-      .then((data) => setData(data.data));
-  }, []);
-
-  //pagination function
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const [total, setTotal] = useState(0);
 
-  useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/report/users?page=${page}`)
+  const fetcData = (postsearch: any = '') => {
+    fetch(
+      `${process.env.NEXT_PUBLIC_HOST_URL}/api/report/users?page=1&data=${postsearch}`
+    )
       .then((res) => res.json())
-      .then((data) => {
-        setData(data.data);
-        setPage(data.current_page);
-        setLastPage(data.last_page);
-        setTotal(data.total);
+      .then((response) => {
+        setData(response.data)
+        setPage(response.current_page);
+        setLastPage(response.last_page);
+        setTotal(response.total);
       });
-  }, [page]);
+  };
+
+  useEffect(() => {
+    fetcData();
+  }, []);
+
+  useEffect(() => {
+    const delayInputTimeoutId = setTimeout(() => {
+      fetcData(search);
+    }, 500);
+    return () => clearTimeout(delayInputTimeoutId);
+  }, [page, 500]);
 
   return (
-    <div className="p-10 bg-white h-screen">
+    <div className="p-10 bg-white min-h-screen">
       <h1 className="text-3xl mb-3 text-gray-800">Daftar Pengunjung</h1>
+      {/* search */}
+      <div className="mb-4">
+        <div className="flex">
+          <input
+            className="form-input w-1/6 p-2 rounded-left-md border-2 border-gray-200 border-r-0 outline-none focus:border-blue-500 text-gray-800"
+            placeholder="Cari Pengunjung"
+            onChange={(e) => setSearch(e.target.value)} 
+          />
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
+            onClick={() => {
+              fetcData(search);
+            }}
+          >
+            Cari
+          </button>
+        </div>
+      </div>
       <div className="relative overflow-x-auto">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-md text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -55,9 +79,12 @@ export default function LihatPengunjung() {
                 <td className="px-6 py-1">{user.whatsapp}</td>
                 <td className="px-6 py-1">
                   {/* button view */}
-                  <button onClick={() => {
-                    router.push(`/lihat-user/${user.id}`)
-                  }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  <button
+                    onClick={() => {
+                      router.push(`/lihat-user/${user.id}`);
+                    }}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  >
                     View
                   </button>
                 </td>
