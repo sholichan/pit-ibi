@@ -26,8 +26,8 @@ type QuizItem = {
 type Quiz = {
   [key: number]: QuizItem;
 };
-const quiz: Quiz = {
-  1: {
+const quiz: Quiz = [
+  {
     id: 1,
     question: 'SGM dengan (…) formulasi unik gabungan Zat Besi (Iron) dan Vitamin C yang dapat bantu meningkatkan penyerapan zat besi 2X Lipat.',
     answer1: {
@@ -41,7 +41,7 @@ const quiz: Quiz = {
       }
     },
   },
-  2: {
+  {
     id: 2,
     question: 'SGM dengan DHA dari Minyak Ikan (…) berkualitas, salah satu minyak ikan terbaik dengan Kandungan DHA 2x Lipat.',
     answer1: {
@@ -55,7 +55,7 @@ const quiz: Quiz = {
       }
     },
   },
-  3: {
+  {
     id: 3,
     question: '(….) merupakan kombinasi unik dari AA, DHA, LA dari Bebelove untuk perkembangan otak',
     answer1: {
@@ -69,8 +69,8 @@ const quiz: Quiz = {
       }
     },
   },
-  4: {
-    id: 1,
+  {
+    id: 4,
     question: '(….) merupakan prebiotik yang paling banyak diteliti dan terbukti klinis memperbaiki frekuensi BAB, melunakkan konsistensi feses dan menaikkan jumlah bakteri baik.',
     answer1: {
       a: {
@@ -83,8 +83,8 @@ const quiz: Quiz = {
       }
     },
   },
-  5: {
-    id: 2,
+  {
+    id: 5,
     question: 'Jika ASI tidak dapat diberikan karena indikasi medis, Formula isolat protein soya merupakan nutrisi alternatif untuk indikasi gejala alergi (…)',
     answer1: {
       a: {
@@ -97,8 +97,8 @@ const quiz: Quiz = {
       }
     },
   },
-  6: {
-    id: 3,
+  {
+    id: 6,
     question: 'SGM Bunda dengan Formulasi Tinggi Zat Besi, kandungan zat besi dalam 1 Gelas SGM Bunda setara dengan (…) Gelas Susu Sapi Segar',
     answer1: {
       a: {
@@ -111,7 +111,7 @@ const quiz: Quiz = {
       }
     },
   },
-}
+]
 
 export default function Question() {
   const [isAnswera, setAnswera] = useState(false)

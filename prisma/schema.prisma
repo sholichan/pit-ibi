@@ -32,3 +32,21 @@ model QuizUserAnswer {
   jawaban         String?
   status          Int?
 }
+
+model AnswerNew {
+  id              Int      @id @default(autoincrement())
+  name            String?
+  email           String      @unique
+  kota            String?
+  whatsapp        String?
+  institusi       String?
+  nama_institusi  String?
+  attend          Int        @default(0)
+  e_nutri         Int        @default(0)
+  jawaban_1       String?
+  jawaban_2       String?
+  jawaban_3       String?
+  jawaban_4       String?
+  jawaban_5       String?
+  jawaban_6       String?
+}
